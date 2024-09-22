@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Install script for the dotfiles
+DOTFILES_REPO="git@github.com:masterkeysrd/dotfiles.git"
 
 # Install the dotfiles in a mac environment
 install_mac() {
@@ -22,3 +23,5 @@ install() {
     echo "Unsupported OS"
   fi
 }
+
+install
