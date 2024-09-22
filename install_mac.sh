@@ -1,4 +1,4 @@
-!/usr/bin/env bash
+#!/usr/bin/env bash
 # Install script for the dotfiles on a mac environment
 
 install_brew() {
