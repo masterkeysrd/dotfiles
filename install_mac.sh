@@ -12,7 +12,7 @@ install_brew() {
 
 install_brew_packages() {
   echo "Installing brew packages..."
-  brew bundle --file=$HOME/.dotfiles/mac/Brewfile --force
+  brew bundle --file=$HOME/.dotfiles/mac/Brewfile
 }
 
 # Install the dotfiles in a mac environment
