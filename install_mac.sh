@@ -15,7 +15,6 @@ install_brew_packages() {
   brew bundle --file=$HOME/.dotfiles/mac/Brewfile
 }
 
-
 # Install the dotfiles in a mac environment
-install_brew()
-install_brew_packages()
+install_brew
+install_brew_packages
