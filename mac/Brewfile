@@ -6,6 +6,7 @@ brew "jq"
 brew "go"
 brew "awscli"
 brew "aws-sam-cli"
+brew "mockery"
 
 cask "iterm2"
 cask "google-chrome"
