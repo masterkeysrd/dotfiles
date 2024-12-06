@@ -13,3 +13,5 @@ wget -O - https://raw.githubusercontent.com/masterkeysrd/dotfiles/refs/heads/mas
 # or
 curl -fsSL https://raw.githubusercontent.com/masterkeysrd/dotfiles/refs/heads/master/install.sh | bash
 ```
+
+> NOTE: The install script is not ready yet. It is still a work in progress.
