@@ -1,0 +1,4 @@
+# Ignore everything, this will force us to add files explicitly
+# using `git add -f` or `git add --force` and allow to keep this 
+# repo in the $HOME directory
+*
