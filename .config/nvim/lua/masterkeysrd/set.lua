@@ -1,0 +1,32 @@
+vim.g.lsp = vim.g.lsp or {}
+
+vim.o.breakindent = true
+vim.o.colorcolumn = "99"
+vim.o.completeopt = "fuzzy,menuone,popup,noselect"
+vim.o.confirm = true
+vim.o.cursorline = true
+-- vim.o.cursorlineopt = "number"
+vim.o.exrc = true
+vim.o.foldlevelstart = 99
+vim.o.foldtext = ""
+vim.o.ignorecase = true
+vim.o.jumpoptions = "view"
+vim.o.linebreak = true
+vim.o.list = true
+vim.o.listchars = "tab:▸ ,trail:·,extends:»,precedes:«"
+vim.o.number = true
+vim.o.pumheight = 12
+vim.o.scrolloff = 2
+vim.o.sidescrolloff = 5
+vim.o.smartcase = true
+vim.o.smoothscroll = true
+vim.o.splitright = true
+vim.o.tagcase = "match"
+vim.o.title = true
+vim.o.undofile = true
+vim.o.updatetime = 250
+vim.o.wildignorecase = true
+vim.o.wildmode = "longest:full,full"
+vim.o.signcolumn = 'yes'
+vim.o.winborder = "double"
+
