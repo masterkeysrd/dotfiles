@@ -159,7 +159,7 @@ local function on_attach(client, bufnr)
         end
 
         if client:supports_method(methods.textDocument_signatureHelp) then
-                keymap("n", "<C-k>", vim.lsp.buf.signature_help, "Signature help")
+                keymap("i", "<C-k>", vim.lsp.buf.signature_help, "Signature help")
         end
 
         if client:supports_method(methods.textDocument_documentHighlight) then
