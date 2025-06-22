@@ -25,6 +25,11 @@ vim.o.mouse = 'a'
 -- Disable horizontal scrolling.
 vim.o.mousescroll = 'ver:3,hor:0'
 
+-- Indent
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+
 -- Folding
 vim.o.foldcolumn = "1"
 vim.o.foldlevelstart = 99
@@ -33,12 +38,12 @@ vim.o.foldtext = ""
 -- UI Characters
 -- UI characters.
 vim.opt.fillchars = {
-        eob = ' ',
-        fold = ' ',
-        foldclose = arrows.right,
-        foldopen = arrows.down,
-        foldsep = ' ',
-        msgsep = '─',
+    eob = ' ',
+    fold = ' ',
+    foldclose = arrows.right,
+    foldopen = arrows.down,
+    foldsep = ' ',
+    msgsep = '─',
 }
 
 -- Use non-rounded border for floating windows.
