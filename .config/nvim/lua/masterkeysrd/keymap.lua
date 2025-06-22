@@ -23,8 +23,8 @@ vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Move to the right window', rema
 
 
 vim.keymap.set({ 'i', 's', 'n' }, '<esc>', function()
-        vim.cmd 'noh'
-        return '<esc>'
+    vim.cmd 'noh'
+    return '<esc>'
 end, { desc = 'Escape, clear hlsearch, and stop snippet session', expr = true })
 
 -- Make U opposite to u.
