@@ -204,7 +204,7 @@ set(0, "Define", { fg = colors.scale.red[3] })
 set(0, "Macro", { fg = colors.scale.red[3] })
 set(0, "PreCondit", { fg = colors.scale.red[3] })
 
-set(0, "Type", { fg = colors.scale.red[4] })
+set(0, "Type", { fg = colors.scale.purple[3] })
 set(0, "StorageClass", { fg = colors.scale.red[3] })
 set(0, "Structure", { fg = colors.scale.red[3] })
 set(0, "Typedef", { fg = colors.scale.red[3] })
@@ -243,7 +243,7 @@ set(0, "@function.macro", { link = "Macro" })
 set(0, "@method", { link = "Function" })
 set(0, "@method.call", { link = "Function" })
 set(0, "@constructor", { fg = colors.scale.purple[2] })
-set(0, "@parameter", { fg = colors.fg_color.default })
+set(0, "@parameter", { fg = colors.scale.orange[3] })
 
 -- Keywords
 set(0, "@keyword", { link = "Keyword" })
@@ -359,6 +359,9 @@ set(0, "markdownUrl", { fg = colors.scale.blue[1], underline = true })
 set(0, "markdownUrlTitle", { fg = colors.scale.blue[1] })
 set(0, "markdownLinkText", { fg = colors.scale.blue[2], underline = true })
 set(0, "markdownIdDeclaration", { link = "markdownLinkText" })
+
+-- Golang
+set(0, "@lsp.mod.defaultLibrary.go", { link = "Keyword" })
 
 -- Plugins: NvimTree
 set(0, "NvimTreeNormal", { fg = colors.fg_color.default, bg = colors.canvas.inset })
