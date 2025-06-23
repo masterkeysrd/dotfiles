@@ -25,57 +25,57 @@ local colors = {
     neutral = {
         emphasis = "#6e7681",
         emphasisPlus = "#6e7681",
-        muted = "#4d545d", -- Converted from rgba(110, 118, 129, 0.4)
+        muted = "#4d545d",  -- Converted from rgba(110, 118, 129, 0.4)
         subtle = "#272c32", -- Converted from rgba(110, 118, 129, 0.1)
     },
     severe = {
         fg = "#db6d28",
         emphasis = "#bd561d",
-        muted = "#9e542b", -- Converted from rgba(219, 109, 40, 0.4)
+        muted = "#9e542b",  -- Converted from rgba(219, 109, 40, 0.4)
         subtle = "#341a09", -- Converted from rgba(219, 109, 40, 0.1)
     },
     danger = {
         fg = "#f85149",
         emphasis = "#da3633",
-        muted = "#c04a45", -- Converted from rgba(248, 81, 73, 0.4)
+        muted = "#c04a45",  -- Converted from rgba(248, 81, 73, 0.4)
         subtle = "#36181b", -- Converted from rgba(248, 81, 73, 0.1)
     },
     done = {
         fg = "#a371f7",
         emphasis = "#8957e5",
-        muted = "#8e66cc", -- Converted from rgba(163, 113, 247, 0.4)
+        muted = "#8e66cc",  -- Converted from rgba(163, 113, 247, 0.4)
         subtle = "#2c1d40", -- Converted from rgba(163, 113, 247, 0.1)
     },
     sponsors = {
         fg = "#db61a2",
         emphasis = "#bf4b8a",
-        muted = "#b35c8c", -- Converted from rgba(219, 97, 162, 0.4)
+        muted = "#b35c8c",  -- Converted from rgba(219, 97, 162, 0.4)
         subtle = "#341a2d", -- Converted from rgba(219, 97, 162, 0.1)
     },
     success = {
         fg = "#3fb950",
         emphasis = "#2ea043",
-        muted = "#46954a", -- Converted from rgba(46, 160, 67, 0.4)
+        muted = "#46954a",  -- Converted from rgba(46, 160, 67, 0.4)
         subtle = "#132a1c", -- Converted from rgba(46, 160, 67, 0.1)
     },
     attention = {
         fg = "#d29922",
         emphasis = "#bb8009",
-        muted = "#946b20", -- Converted from rgba(187, 128, 9, 0.4)
+        muted = "#946b20",  -- Converted from rgba(187, 128, 9, 0.4)
         subtle = "#2c2003", -- Converted from rgba(187, 128, 9, 0.15)
     },
     -- Color scales for gradient effects
     scale = {
-        black = {"#010409", "#161b22", "#21262d", "#30363d", "#484f58", "#6e7681", "#8b949e", "#c9d1d9", "#f0f6fc"},
-        white = {"#f0f6fc", "#c9d1d9", "#8b949e", "#6e7681", "#484f58", "#30363d", "#21262d", "#161b22", "#010409"},
-        gray = {"#f0f6fc", "#c9d1d9", "#8b949e", "#6e7681", "#484f58", "#30363d", "#21262d", "#161b22", "#010409"},
-        blue = {"#cae8ff", "#a5d6ff", "#79c0ff", "#58a6ff", "#388bfd", "#1f6feb", "#1158c7", "#0d419d", "#051d4d"},
-        green = {"#aff5b4", "#7ee787", "#56d364", "#3fb950", "#2ea043", "#238636", "#196c2e", "#0f5323", "#033a16"},
-        yellow = {"#f8e3a1", "#f2cc60", "#e3b341", "#d29922", "#bb8009", "#9e6a03", "#845306", "#693e00", "#4b2900"},
-        orange = {"#ffdfb6", "#ffc680", "#ffa657", "#f0883e", "#db6d28", "#bd561d", "#9b4215", "#762d0a", "#5a1e02"},
-        red = {"#ffdcd7", "#ffc1ba", "#ffa198", "#ff7b72", "#f85149", "#da3633", "#b62324", "#8e1519", "#67060c"},
-        purple = {"#eddeff", "#d8b9ff", "#c297ff", "#a371f7", "#8957e5", "#6e40c9", "#553098", "#3c1e70", "#271052"},
-        pink = {"#ffdaec", "#ffbedd", "#ff9bce", "#f778ba", "#db61a2", "#bf4b8a", "#9e3670", "#7d2457", "#5e103e"},
+        black = { "#010409", "#161b22", "#21262d", "#30363d", "#484f58", "#6e7681", "#8b949e", "#c9d1d9", "#f0f6fc" },
+        white = { "#f0f6fc", "#c9d1d9", "#8b949e", "#6e7681", "#484f58", "#30363d", "#21262d", "#161b22", "#010409" },
+        gray = { "#f0f6fc", "#c9d1d9", "#8b949e", "#6e7681", "#484f58", "#30363d", "#21262d", "#161b22", "#010409" },
+        blue = { "#cae8ff", "#a5d6ff", "#79c0ff", "#58a6ff", "#388bfd", "#1f6feb", "#1158c7", "#0d419d", "#051d4d" },
+        green = { "#aff5b4", "#7ee787", "#56d364", "#3fb950", "#2ea043", "#238636", "#196c2e", "#0f5323", "#033a16" },
+        yellow = { "#f8e3a1", "#f2cc60", "#e3b341", "#d29922", "#bb8009", "#9e6a03", "#845306", "#693e00", "#4b2900" },
+        orange = { "#ffdfb6", "#ffc680", "#ffa657", "#f0883e", "#db6d28", "#bd561d", "#9b4215", "#762d0a", "#5a1e02" },
+        red = { "#ffdcd7", "#ffc1ba", "#ffa198", "#ff7b72", "#f85149", "#da3633", "#b62324", "#8e1519", "#67060c" },
+        purple = { "#eddeff", "#d8b9ff", "#c297ff", "#a371f7", "#8957e5", "#6e40c9", "#553098", "#3c1e70", "#271052" },
+        pink = { "#ffdaec", "#ffbedd", "#ff9bce", "#f778ba", "#db61a2", "#bf4b8a", "#9e3670", "#7d2457", "#5e103e" },
     },
     -- ANSI Colors for terminal
     ansi = {
@@ -102,7 +102,7 @@ local colors = {
             active = "#F78166",
         }
     },
-    -- Code editor specific 
+    -- Code editor specific
     codemirror = {
         activelineBg = "#161b22",
     },
@@ -259,7 +259,7 @@ set(0, "@exception", { link = "Exception" })
 
 -- Types
 set(0, "@type", { link = "Type" })
-set(0, "@type.builtin", { link = "Type" })
+set(0, "@type.builtin", { link = "Keyword" })
 set(0, "@type.qualifier", { link = "Type" })
 set(0, "@type.definition", { link = "Typedef" })
 set(0, "@storageclass", { link = "StorageClass" })
@@ -269,7 +269,7 @@ set(0, "@property", { fg = colors.scale.purple[3] })
 
 -- Identifiers
 set(0, "@variable", { fg = colors.fg_color.default })
-set(0, "@variable.builtin", { fg = colors.scale.blue[2] })
+set(0, "@variable.builtin", { fg = colors.scale.blue[3] })
 set(0, "@constant", { link = "Constant" })
 set(0, "@constant.builtin", { link = "Constant" })
 set(0, "@constant.macro", { link = "Constant" })
@@ -298,7 +298,7 @@ set(0, "@tag.attribute", { fg = colors.scale.orange[2] })
 set(0, "@tag.delimiter", { fg = colors.fg_color.muted })
 
 -- Punctuation
-set(0, "@punctuation.delimiter", { fg = colors.fg_color.default })  -- Generic delimiters
+set(0, "@punctuation.delimiter", { fg = colors.fg_color.default }) -- Generic delimiters
 set(0, "@punctuation.bracket", { fg = colors.scale.orange[3] })    -- Generic brackets
 
 -- LSP semantic tokens
@@ -321,6 +321,9 @@ set(0, "@lsp.type.number", { link = "@number" })
 set(0, "@lsp.type.regexp", { link = "@string.regex" })
 set(0, "@lsp.type.operator", { link = "@operator" })
 set(0, "@lsp.type.decorator", { link = "@attribute" })
+set(0, "@lsp.typemod.type.defaultLibrary", { link = "@keyword" })
+set(0, "@lsp.typemod.variable.defaultLibrary", { link = "@variable.builtin" })
+set(0, "@lsp.typemod.string.format", { fg = colors.scale.blue[4] })
 
 -- Diagnostics
 set(0, "DiagnosticError", { fg = colors.danger.fg })
@@ -360,8 +363,8 @@ set(0, "markdownUrlTitle", { fg = colors.scale.blue[1] })
 set(0, "markdownLinkText", { fg = colors.scale.blue[2], underline = true })
 set(0, "markdownIdDeclaration", { link = "markdownLinkText" })
 
--- Golang
-set(0, "@lsp.mod.defaultLibrary.go", { link = "Keyword" })
+
+-- Go
 
 -- Plugins: NvimTree
 set(0, "NvimTreeNormal", { fg = colors.fg_color.default, bg = colors.canvas.inset })
