@@ -35,4 +35,4 @@ vim.keymap.set({ 's', 'i', 'n', 'v' }, '<C-s>', '<esc>:w<cr>', { desc = 'Exit in
 vim.keymap.set({ 's', 'i', 'n', 'v' }, '<C-S-s>', '<esc>:wa<cr>', { desc = 'Exit insert mode and save all changes.' })
 
 vim.keymap.set('n', 'H', vim.cmd.bp, { desc = 'Previous buffer' })
-vim.keymap.set('n', 'L', vim.cmd.bp, { desc = 'Next buffer' })
+vim.keymap.set('n', 'L', vim.cmd.bn, { desc = 'Next buffer' })
