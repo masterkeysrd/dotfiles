@@ -31,31 +31,31 @@ M.misc = {
 }
 
 M.symbol_kinds = {
-    '', --- [1] Text
-    '', --- [2] Method
-    '', --- [3] Function
-    '', --- [4] Constructor
-    '', --- [5] Field
-    '', --- [6] Variable
-    '', --- [7] Class
-    '', --- [8] Interface
-    '', --- [9] Module
-    '', --- [10] Property
-    '', --- [11] Unit
-    '', --- [12] Value
-    '', --- [13] Enum
-    '', --- [14] Keyword
-    '', --- [15] Snippet
-    '', --- [16] Color
-    '', --- [17] File
-    '', --- [18] Reference
-    '', --- [19] Folder
-    '', --- [20] EnumMember
-    '', --- [21] Constant
-    '', --- [22] Struct
-    '', --- [23] Event
-    '', --- [24] Operator
-    '', --- [25] TypeParameter
+    Text = '', --- [1] Text
+    Method = '', --- [2] Method
+    Function = '', --- [3] Function
+    Constructor = '', --- [4] Constructor
+    Field = '', --- [5] Field
+    Variable = '', --- [6] Variable
+    Class = '', --- [7] Class
+    Interface = '', --- [8] Interface
+    Module = '', --- [9] Module
+    Propery = '', --- [10] Property
+    Unit = '', --- [11] Unit
+    Value = '', --- [12] Value
+    Enum = '', --- [13] Enum
+    Keyword = '', --- [14] Keyword
+    Snippet = '', --- [15] Snippet
+    Color = '', --- [16] Color
+    File = '', --- [17] File
+    Reference = '', --- [18] Reference
+    Folder = '', --- [19] Folder
+    EnumMember = '', --- [20] EnumMember
+    Constant = '', --- [21] Constant
+    Struct = '', --- [22] Struct
+    Event = '', --- [23] Event
+    Operator = '', --- [24] Operator
+    TypeParameter = '', --- [25] TypeParameter
 }
 
 

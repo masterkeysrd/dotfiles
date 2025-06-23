@@ -1,6 +1,5 @@
 local symbol_kinds = require("masterkeysrd.icons").symbol_kinds
 local methods = vim.lsp.protocol.Methods
-local completion_kind = vim.lsp.protocol.CompletionItemKind
 
 -- Disable inlay hints initially (and enable if needed with my ToggleInlayHints command).
 vim.g.inlay_hints = false
@@ -23,21 +22,66 @@ local function on_init(client, result)
 end
 
 
+local completion_names = {
+    "Text",          --- [1] Text
+    "Method",        --- [2] Method
+    "Function",      --- [3] Function
+    "Constructor",   --- [4] Constructor
+    "Field",         --- [5] Field
+    "Variable",      --- [6] Variable
+    "Class",         --- [7] Class
+    "Interface",     --- [8] Interface
+    "Module",        --- [9] Module
+    "Propery",       --- [10] Property
+    "Unit",          --- [11] Unit
+    "Value",         --- [12] Value
+    "Enum",          --- [13] Enum
+    "Keyword",       --- [14] Keyword
+    "Snippet",       --- [15] Snippet
+    "Color",         --- [16] Color
+    "File",          --- [17] File
+    "Reference",     --- [18] Reference
+    "Folder",        --- [19] Folder
+    "EnumMember",    --- [20] EnumMember
+    "Constant",      --- [21] Constant
+    "Struct",        --- [22] Struct
+    "Event",         --- [23] Event
+    "Operator",      --- [24] Operator
+    "TypeParameter", --- [25] TypeParameter
+}
+
 --- Completion item convert
 ---@param item lsp.CompletionItem
+---@return lsp.CompletionItem
 local function convert_completion_item(item)
-    local abbr = symbol_kinds[item.kind] or ""
-    if abbr ~= "" then
-        abbr = abbr .. "  "
-    end
-    abbr = abbr .. item.label:gsub("%b()", "")
+    local kind_name = completion_names[item.kind] or "Text"
+    local kind_icon = symbol_kinds[kind_name] or ""
 
-    local menu = ""
-    if item.kind == completion_kind.Snippet then
-        menu = item.detail or "Snippet"
+    local abbr = ""
+    if kind_icon ~= "" then
+        -- abbr = string.format("%%#CmpItemKind%s#%s%%*", kind_name, kind_icon)
+        abbr = kind_icon .. " "
     end
 
-    return { abbr = abbr, kind = "", menu = menu }
+
+    -- Add the label, removing any parentheses
+    local label = item.label:gsub("%b()", "")
+    local hl_group = "CmpItemKind" .. kind_name
+    print(hl_group)
+
+
+    -- local menu = ""
+    -- if item.kind == completion_kind.Snippet then
+    --     menu = item.detail or "Snippet"
+    -- end
+
+    return {
+        abbr = abbr,
+        kind = "",
+        menu = label,
+        abbr_hlgroup = hl_group,
+        documentation = item.documentation,
+    }
 end
 
 --- Show documentation floating windows.
@@ -273,7 +317,7 @@ end
 local function auto_configure()
     local configs = {}
     for _, path in ipairs(vim.api.nvim_get_runtime_file("lsp/*.lua", true)) do
-        local name = vim.fn.fnamemodify(path, ":t:r")         -- get filename
+        local name = vim.fn.fnamemodify(path, ":t:r") -- get filename
         configs[name] = true
     end
 
