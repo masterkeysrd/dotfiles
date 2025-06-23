@@ -11,7 +11,8 @@
       "${3rd}/luv/library",
 
       // Include some plugins for API completion.
-      "~/.local/share/nvim/site/pack/plugins/start/nvim-treesitter/lua/nvim-treesitter"
+      "~/.local/share/nvim/site/pack/plugins/start/nvim-treesitter/lua/nvim-treesitter",
+      "~/.local/share/nvim/site/pack/plugins/start/nvim-web-devicons/lua/nvim-web-devicons"
     ]
   }
 }
