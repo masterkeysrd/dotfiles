@@ -135,15 +135,21 @@ set(0, "IncSearch", { fg = colors.canvas.default, bg = colors.scale.yellow[1] })
 set(0, "MatchParen", { bg = colors.scale.green[8], fg = colors.scale.green[2] })
 
 -- Status Line
-set(0, "StatusLine", { fg = colors.fg_color.muted, bg = colors.canvas.default })
+set(0, "StatusLine", { fg = colors.fg_color.muted, bg = colors.scale.black[1] })
 set(0, "StatusLineNC", { fg = colors.fg_color.muted, bg = colors.border.muted })
 set(0, "WildMenu", { fg = colors.fg_color.default, bg = colors.accent.subtle })
 set(0, "VertSplit", { fg = colors.border.default, bg = colors.canvas.default })
+set(0, "StatuslineModeNormal", { fg = colors.scale.black[1], bg = colors.scale.green[3], bold = true })
+set(0, "StatuslineModeInsert", { fg = colors.scale.black[1], bg = colors.scale.orange[3], bold = true })
+set(0, "StatuslineModeVisual", { fg = colors.scale.black[1], bg = colors.scale.yellow[3], bold = true })
+set(0, "StatuslineModeCommand", { fg = colors.scale.black[1], bg = colors.scale.blue[3], bold = true })
+set(0, "StatuslineModePending", { fg = colors.scale.black[1], bg = colors.scale.pink[3], bold = true })
+set(0, "StatuslineTitle", { fg = colors.fg_color.muted, bg = colors.scale.black[1] })
 
 -- Tabline
 set(0, "TabLine", { fg = colors.fg_color.muted, bg = colors.canvas.inset })
 set(0, "TabLineFill", { fg = colors.fg_color.muted, bg = colors.canvas.inset })
-set(0, "TabLineSel", { fg = colors.fg_color.default, bg = colors.canvas.default })
+set(0, "TabLineSel", { fg = colors.fg_color.default, bg = colors.canvas.overlay })
 
 -- Popup Menu
 set(0, "Pmenu", { fg = colors.fg_color.default, bg = colors.canvas.overlay })
@@ -166,6 +172,7 @@ set(0, "SpellLocal", { sp = colors.accent.fg, undercurl = true })
 set(0, "SpellRare", { sp = colors.done.fg, undercurl = true })
 
 -- Messages
+set(0, "MsgArea", { bg = colors.scale.black[1] })
 set(0, "ErrorMsg", { fg = colors.danger.fg })
 set(0, "WarningMsg", { fg = colors.attention.fg })
 set(0, "MoreMsg", { fg = colors.success.fg })
@@ -362,9 +369,6 @@ set(0, "markdownUrl", { fg = colors.scale.blue[1], underline = true })
 set(0, "markdownUrlTitle", { fg = colors.scale.blue[1] })
 set(0, "markdownLinkText", { fg = colors.scale.blue[2], underline = true })
 set(0, "markdownIdDeclaration", { link = "markdownLinkText" })
-
-
--- Go
 
 -- Plugins: NvimTree
 set(0, "NvimTreeNormal", { fg = colors.fg_color.default, bg = colors.canvas.inset })
