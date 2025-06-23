@@ -31,8 +31,10 @@ end, { desc = 'Escape, clear hlsearch, and stop snippet session', expr = true })
 vim.keymap.set('n', 'U', '<C-r>', { desc = 'Redo' })
 
 -- Escape and save changes.
-vim.keymap.set({ 's', 'i', 'n', 'v' }, '<C-s>', '<esc>:w<cr>', { desc = 'Exit insert mode and save changes.' })
-vim.keymap.set({ 's', 'i', 'n', 'v' }, '<C-S-s>', '<esc>:wa<cr>', { desc = 'Exit insert mode and save all changes.' })
+vim.keymap.set({ 's', 'i', 'n', 'v' }, '<C-s>', '<esc>:w<cr>',
+    { desc = 'Exit insert mode and save changes.', remap = true, silent = true })
+vim.keymap.set({ 's', 'i', 'n', 'v' }, '<C-S-s>', '<esc>:wa<cr>',
+    { desc = 'Exit insert mode and save all changes.', silent = true })
 
 vim.keymap.set('n', 'H', vim.cmd.bp, { desc = 'Previous buffer' })
 vim.keymap.set('n', 'L', vim.cmd.bn, { desc = 'Next buffer' })
