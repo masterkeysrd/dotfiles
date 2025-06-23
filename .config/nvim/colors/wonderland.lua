@@ -1,9 +1,24 @@
+-- Color scales for gradient effects
+local scale = {
+    black = { "#010409", "#161b22", "#21262d", "#30363d", "#484f58", "#6e7681", "#8b949e", "#c9d1d9", "#f0f6fc" },
+    white = { "#f0f6fc", "#c9d1d9", "#8b949e", "#6e7681", "#484f58", "#30363d", "#21262d", "#161b22", "#010409" },
+    gray = { "#fafbfc", "#f6f8fa", "#e1e4e8", "#d1d5da", "#959da5", "#6a737d", "#586069", "#444d56", "#2f363d", "#24292e" },
+    blue = { "#cae8ff", "#a5d6ff", "#79c0ff", "#58a6ff", "#388bfd", "#1f6feb", "#1158c7", "#0d419d", "#051d4d" },
+    green = { "#aff5b4", "#7ee787", "#56d364", "#3fb950", "#2ea043", "#238636", "#196c2e", "#0f5323", "#033a16" },
+    yellow = { "#f8e3a1", "#f2cc60", "#e3b341", "#d29922", "#bb8009", "#9e6a03", "#845306", "#693e00", "#4b2900" },
+    orange = { "#ffdfb6", "#ffc680", "#ffa657", "#f0883e", "#db6d28", "#bd561d", "#9b4215", "#762d0a", "#5a1e02" },
+    red = { "#ffdcd7", "#ffc1ba", "#ffa198", "#ff7b72", "#f85149", "#da3633", "#b62324", "#8e1519", "#67060c" },
+    purple = { "#eddeff", "#d8b9ff", "#c297ff", "#a371f7", "#8957e5", "#6e40c9", "#553098", "#3c1e70", "#271052" },
+    pink = { "#ffdaec", "#ffbedd", "#ff9bce", "#f778ba", "#db61a2", "#bf4b8a", "#9e3670", "#7d2457", "#5e103e" },
+}
+
+
 local colors = {
     -- Base colors from GitHub Dark theme
     fg_color = {
         attention = "#9a6700",
-        default = "#e6edf3",
-        muted = "#7d8590",
+        default = scale.gray[2],
+        muted = scale.gray[6],
         on_emphasis = "#ffffff",
     },
     accent = {
@@ -12,10 +27,10 @@ local colors = {
         subtle = "#1a2c42", -- Converted from rgba(56, 139, 253, 0.1)
     },
     canvas = {
-        default = "#0d1117",
-        overlay = "#161b22",
+        default = scale.gray[10],
+        overlay = scale.gray[9],
         inset = "#010409",
-        subtle = "#161b22",
+        subtle = "#1a1f23",
     },
     border = {
         default = "#30363d",
@@ -64,19 +79,6 @@ local colors = {
         muted = "#946b20",  -- Converted from rgba(187, 128, 9, 0.4)
         subtle = "#2c2003", -- Converted from rgba(187, 128, 9, 0.15)
     },
-    -- Color scales for gradient effects
-    scale = {
-        black = { "#010409", "#161b22", "#21262d", "#30363d", "#484f58", "#6e7681", "#8b949e", "#c9d1d9", "#f0f6fc" },
-        white = { "#f0f6fc", "#c9d1d9", "#8b949e", "#6e7681", "#484f58", "#30363d", "#21262d", "#161b22", "#010409" },
-        gray = { "#f0f6fc", "#c9d1d9", "#8b949e", "#6e7681", "#484f58", "#30363d", "#21262d", "#161b22", "#010409" },
-        blue = { "#cae8ff", "#a5d6ff", "#79c0ff", "#58a6ff", "#388bfd", "#1f6feb", "#1158c7", "#0d419d", "#051d4d" },
-        green = { "#aff5b4", "#7ee787", "#56d364", "#3fb950", "#2ea043", "#238636", "#196c2e", "#0f5323", "#033a16" },
-        yellow = { "#f8e3a1", "#f2cc60", "#e3b341", "#d29922", "#bb8009", "#9e6a03", "#845306", "#693e00", "#4b2900" },
-        orange = { "#ffdfb6", "#ffc680", "#ffa657", "#f0883e", "#db6d28", "#bd561d", "#9b4215", "#762d0a", "#5a1e02" },
-        red = { "#ffdcd7", "#ffc1ba", "#ffa198", "#ff7b72", "#f85149", "#da3633", "#b62324", "#8e1519", "#67060c" },
-        purple = { "#eddeff", "#d8b9ff", "#c297ff", "#a371f7", "#8957e5", "#6e40c9", "#553098", "#3c1e70", "#271052" },
-        pink = { "#ffdaec", "#ffbedd", "#ff9bce", "#f778ba", "#db61a2", "#bf4b8a", "#9e3670", "#7d2457", "#5e103e" },
-    },
     -- ANSI Colors for terminal
     ansi = {
         black = "#484f58",
@@ -96,16 +98,6 @@ local colors = {
         cyanBright = "#56d4dd",
         whiteBright = "#f0f6fc",
     },
-    -- GitHub-specific UI elements
-    primer = {
-        border = {
-            active = "#F78166",
-        }
-    },
-    -- Code editor specific
-    codemirror = {
-        activelineBg = "#161b22",
-    },
 }
 
 -- Set up Neovim theme
@@ -121,35 +113,35 @@ local set = vim.api.nvim_set_hl
 set(0, "Normal", { fg = colors.fg_color.default, bg = colors.canvas.default })
 set(0, "EndOfBuffer", { fg = colors.border.default, bg = colors.canvas.default })
 set(0, "Cursor", { bg = colors.accent.fg })
-set(0, "CursorLine", { bg = colors.codemirror.activelineBg })
+set(0, "CursorLine", { bg = colors.canvas.overlay })
 set(0, "CursorLineNr", { fg = colors.fg_color.default, bold = true })
-set(0, "LineNr", { fg = colors.scale.gray[6], bg = colors.canvas.default })
-set(0, "Visual", { bg = colors.neutral.subtle })
+set(0, "LineNr", { fg = scale.gray[6], bg = colors.canvas.default })
+set(0, "Visual", { bg = scale.gray[8] })
 set(0, "VisualNOS", { bg = colors.neutral.subtle })
 set(0, "NonText", { fg = colors.border.muted })
 set(0, "SpecialKey", { fg = colors.border.muted })
 set(0, "Directory", { fg = colors.accent.fg })
-set(0, "Title", { fg = colors.scale.blue[2], bold = true })
-set(0, "Search", { fg = colors.canvas.default, bg = colors.scale.yellow[2] })
-set(0, "IncSearch", { fg = colors.canvas.default, bg = colors.scale.yellow[1] })
-set(0, "MatchParen", { bg = colors.scale.green[8], fg = colors.scale.green[2] })
+set(0, "Title", { fg = scale.blue[2], bold = true })
+set(0, "Search", { fg = colors.canvas.default, bg = scale.yellow[2] })
+set(0, "IncSearch", { fg = colors.canvas.default, bg = scale.yellow[1] })
+set(0, "MatchParen", { bg = scale.green[8], fg = scale.green[2] })
 
 -- Status Line
-set(0, "StatusLine", { fg = colors.fg_color.muted, bg = colors.scale.black[1] })
+set(0, "StatusLine", { fg = scale.gray[5], bg = colors.canvas.subtle })
 set(0, "StatusLineNC", { fg = colors.fg_color.muted, bg = colors.border.muted })
 set(0, "WildMenu", { fg = colors.fg_color.default, bg = colors.accent.subtle })
 set(0, "VertSplit", { fg = colors.border.default, bg = colors.canvas.default })
-set(0, "StatuslineModeNormal", { fg = colors.scale.black[1], bg = colors.scale.green[3], bold = true })
-set(0, "StatuslineModeInsert", { fg = colors.scale.black[1], bg = colors.scale.orange[3], bold = true })
-set(0, "StatuslineModeVisual", { fg = colors.scale.black[1], bg = colors.scale.yellow[3], bold = true })
-set(0, "StatuslineModeCommand", { fg = colors.scale.black[1], bg = colors.scale.blue[3], bold = true })
-set(0, "StatuslineModePending", { fg = colors.scale.black[1], bg = colors.scale.pink[3], bold = true })
-set(0, "StatuslineTitle", { fg = colors.fg_color.muted, bg = colors.scale.black[1] })
+set(0, "StatuslineModeNormal", { fg = colors.canvas.subtle, bg = scale.green[3], bold = true })
+set(0, "StatuslineModeInsert", { fg = colors.canvas.subtle, bg = scale.orange[3], bold = true })
+set(0, "StatuslineModeVisual", { fg = colors.canvas.subtle, bg = scale.yellow[3], bold = true })
+set(0, "StatuslineModeCommand", { fg = colors.canvas.subtle, bg = scale.blue[3], bold = true })
+set(0, "StatuslineModePending", { fg = colors.canvas.subtle, bg = scale.pink[3], bold = true })
+set(0, "StatuslineTitle", { fg = scale.gray[5], bg = colors.canvas.subtle })
 
 -- Tabline
-set(0, "TabLine", { fg = colors.fg_color.muted, bg = colors.canvas.inset })
-set(0, "TabLineFill", { fg = colors.fg_color.muted, bg = colors.canvas.inset })
-set(0, "TabLineSel", { fg = colors.fg_color.default, bg = colors.canvas.overlay })
+set(0, "TabLine", { fg = colors.fg_color.muted, bg = colors.canvas.subtle })
+set(0, "TabLineFill", { fg = colors.fg_color.muted, bg = colors.canvas.subtle })
+set(0, "TabLineSel", { fg = colors.fg_color.default, bg = colors.canvas.default })
 
 -- Popup Menu
 set(0, "Pmenu", { fg = colors.fg_color.default, bg = colors.canvas.overlay })
@@ -172,7 +164,6 @@ set(0, "SpellLocal", { sp = colors.accent.fg, undercurl = true })
 set(0, "SpellRare", { sp = colors.done.fg, undercurl = true })
 
 -- Messages
-set(0, "MsgArea", { bg = colors.scale.black[1] })
 set(0, "ErrorMsg", { fg = colors.danger.fg })
 set(0, "WarningMsg", { fg = colors.attention.fg })
 set(0, "MoreMsg", { fg = colors.success.fg })
@@ -186,42 +177,42 @@ set(0, "DiffDelete", { bg = colors.danger.subtle, fg = colors.danger.muted })
 set(0, "DiffText", { bg = colors.attention.muted })
 
 -- Syntax
-set(0, "Comment", { fg = colors.scale.gray[3], italic = true })
-set(0, "Constant", { fg = colors.scale.blue[2] })
-set(0, "String", { fg = colors.scale.blue[2] })
-set(0, "Character", { fg = colors.scale.red[3] })
-set(0, "Number", { fg = colors.scale.blue[3] })
-set(0, "Boolean", { fg = colors.scale.blue[3] })
-set(0, "Float", { fg = colors.scale.blue[3] })
+set(0, "Comment", { fg = colors.fg_color.muted, italic = true })
+set(0, "Constant", { fg = scale.blue[2] })
+set(0, "String", { fg = scale.blue[2] })
+set(0, "Character", { fg = scale.red[3] })
+set(0, "Number", { fg = scale.blue[3] })
+set(0, "Boolean", { fg = scale.blue[3] })
+set(0, "Float", { fg = scale.blue[3] })
 
-set(0, "Identifier", { fg = colors.scale.orange[2] })
-set(0, "Function", { fg = colors.scale.purple[3] })
+set(0, "Identifier", { fg = scale.orange[2] })
+set(0, "Function", { fg = scale.purple[3] })
 
-set(0, "Statement", { fg = colors.scale.red[3] })
-set(0, "Conditional", { fg = colors.scale.red[3] })
-set(0, "Repeat", { fg = colors.scale.red[3] })
-set(0, "Label", { fg = colors.scale.red[3] })
-set(0, "Operator", { fg = colors.scale.red[4] })
-set(0, "Keyword", { fg = colors.scale.red[4] })
-set(0, "Exception", { fg = colors.scale.red[3] })
+set(0, "Statement", { fg = scale.red[3] })
+set(0, "Conditional", { fg = scale.red[3] })
+set(0, "Repeat", { fg = scale.red[3] })
+set(0, "Label", { fg = scale.red[3] })
+set(0, "Operator", { fg = scale.red[4] })
+set(0, "Keyword", { fg = scale.red[4] })
+set(0, "Exception", { fg = scale.red[3] })
 
-set(0, "PreProc", { fg = colors.scale.red[3] })
-set(0, "Include", { fg = colors.scale.red[3] })
-set(0, "Define", { fg = colors.scale.red[3] })
-set(0, "Macro", { fg = colors.scale.red[3] })
-set(0, "PreCondit", { fg = colors.scale.red[3] })
+set(0, "PreProc", { fg = scale.red[3] })
+set(0, "Include", { fg = scale.red[3] })
+set(0, "Define", { fg = scale.red[3] })
+set(0, "Macro", { fg = scale.red[3] })
+set(0, "PreCondit", { fg = scale.red[3] })
 
-set(0, "Type", { fg = colors.scale.purple[3] })
-set(0, "StorageClass", { fg = colors.scale.red[3] })
-set(0, "Structure", { fg = colors.scale.red[3] })
-set(0, "Typedef", { fg = colors.scale.red[3] })
+set(0, "Type", { fg = scale.purple[3] })
+set(0, "StorageClass", { fg = scale.red[3] })
+set(0, "Structure", { fg = scale.red[3] })
+set(0, "Typedef", { fg = scale.red[3] })
 
-set(0, "Special", { fg = colors.scale.orange[3] })
-set(0, "SpecialChar", { fg = colors.scale.orange[3] })
-set(0, "Tag", { fg = colors.scale.green[1] })
+set(0, "Special", { fg = scale.orange[3] })
+set(0, "SpecialChar", { fg = scale.orange[3] })
+set(0, "Tag", { fg = scale.green[1] })
 set(0, "Delimiter", { fg = colors.fg_color.default })
-set(0, "SpecialComment", { fg = colors.scale.gray[3], italic = true })
-set(0, "Debug", { fg = colors.scale.red[3] })
+set(0, "SpecialComment", { fg = scale.gray[3], italic = true })
+set(0, "Debug", { fg = scale.red[3] })
 set(0, "Underlined", { underline = true })
 set(0, "Ignore", { fg = colors.border.muted })
 set(0, "Error", { fg = colors.danger.fg })
@@ -236,7 +227,7 @@ set(0, "@operator", { link = "Operator" })
 
 -- Literals
 set(0, "@string", { link = "String" })
-set(0, "@string.special.url", { fg = colors.scale.blue[2] })
+set(0, "@string.special.url", { fg = scale.blue[2] })
 set(0, "@character", { link = "Character" })
 set(0, "@character.special", { link = "SpecialChar" })
 set(0, "@boolean", { link = "Boolean" })
@@ -246,12 +237,12 @@ set(0, "@float", { link = "Float" })
 -- Functions
 set(0, "@function", { link = "Function" })
 set(0, "@function.call", { link = "Function" })
-set(0, "@function.builtin", { fg = colors.scale.blue[2] })
+set(0, "@function.builtin", { fg = scale.blue[2] })
 set(0, "@function.macro", { link = "Macro" })
 set(0, "@method", { link = "Function" })
 set(0, "@method.call", { link = "Function" })
-set(0, "@constructor", { fg = colors.scale.purple[2] })
-set(0, "@parameter", { fg = colors.scale.orange[3] })
+set(0, "@constructor", { fg = scale.purple[2] })
+set(0, "@parameter", { fg = scale.orange[3] })
 
 -- Keywords
 set(0, "@keyword", { link = "Keyword" })
@@ -271,18 +262,18 @@ set(0, "@type.builtin", { link = "Keyword" })
 set(0, "@type.qualifier", { link = "Type" })
 set(0, "@type.definition", { link = "Typedef" })
 set(0, "@storageclass", { link = "StorageClass" })
-set(0, "@attribute", { fg = colors.scale.blue[2] })
-set(0, "@field", { fg = colors.scale.orange[2] })
-set(0, "@property", { fg = colors.scale.purple[3] })
+set(0, "@attribute", { fg = scale.blue[2] })
+set(0, "@field", { fg = scale.orange[2] })
+set(0, "@property", { fg = scale.purple[3] })
 
 -- Identifiers
 set(0, "@variable", { fg = colors.fg_color.default })
-set(0, "@variable.builtin", { fg = colors.scale.blue[3] })
+set(0, "@variable.builtin", { fg = scale.blue[3] })
 set(0, "@constant", { link = "Constant" })
 set(0, "@constant.builtin", { link = "Constant" })
 set(0, "@constant.macro", { link = "Constant" })
-set(0, "@namespace", { fg = colors.scale.blue[4] })
-set(0, "@symbol", { fg = colors.scale.blue[2] })
+set(0, "@namespace", { fg = scale.blue[4] })
+set(0, "@symbol", { fg = scale.blue[2] })
 
 -- Text
 set(0, "@text", { fg = colors.fg_color.default })
@@ -291,10 +282,10 @@ set(0, "@text.emphasis", { italic = true })
 set(0, "@text.underline", { underline = true })
 set(0, "@text.strike", { strikethrough = true })
 set(0, "@text.title", { link = "Title" })
-set(0, "@text.literal", { fg = colors.scale.blue[2] })
-set(0, "@text.uri", { fg = colors.scale.blue[1], underline = true })
-set(0, "@text.math", { fg = colors.scale.blue[2] })
-set(0, "@text.reference", { fg = colors.scale.blue[2] })
+set(0, "@text.literal", { fg = scale.blue[2] })
+set(0, "@text.uri", { fg = scale.blue[1], underline = true })
+set(0, "@text.math", { fg = scale.blue[2] })
+set(0, "@text.reference", { fg = scale.blue[2] })
 set(0, "@text.todo", { link = "Todo" })
 set(0, "@text.note", { fg = colors.success.fg, bg = colors.success.subtle })
 set(0, "@text.warning", { fg = colors.attention.fg, bg = colors.attention.subtle })
@@ -302,12 +293,12 @@ set(0, "@text.danger", { fg = colors.danger.fg, bg = colors.danger.subtle })
 
 -- Tags
 set(0, "@tag", { link = "Tag" })
-set(0, "@tag.attribute", { fg = colors.scale.orange[2] })
+set(0, "@tag.attribute", { fg = scale.orange[2] })
 set(0, "@tag.delimiter", { fg = colors.fg_color.muted })
 
 -- Punctuation
 set(0, "@punctuation.delimiter", { fg = colors.fg_color.default }) -- Generic delimiters
-set(0, "@punctuation.bracket", { fg = colors.scale.orange[3] })    -- Generic brackets
+set(0, "@punctuation.bracket", { fg = scale.orange[3] })           -- Generic brackets
 
 -- LSP semantic tokens
 set(0, "@lsp.type.namespace", { link = "@namespace" })
@@ -331,7 +322,7 @@ set(0, "@lsp.type.operator", { link = "@operator" })
 set(0, "@lsp.type.decorator", { link = "@attribute" })
 set(0, "@lsp.typemod.type.defaultLibrary", { link = "@keyword" })
 set(0, "@lsp.typemod.variable.defaultLibrary", { link = "@variable.builtin" })
-set(0, "@lsp.typemod.string.format", { fg = colors.scale.blue[4] })
+set(0, "@lsp.typemod.string.format", { fg = scale.blue[4] })
 
 -- Diagnostics
 set(0, "DiagnosticError", { fg = colors.danger.fg })
@@ -349,26 +340,26 @@ set(0, "GitSignsChange", { fg = colors.attention.fg })
 set(0, "GitSignsDelete", { fg = colors.danger.fg })
 
 -- Markdown
-set(0, "markdownH1", { fg = colors.scale.blue[2], bold = true })
-set(0, "markdownH2", { fg = colors.scale.blue[2], bold = true })
-set(0, "markdownH3", { fg = colors.scale.blue[2], bold = true })
-set(0, "markdownH4", { fg = colors.scale.blue[2], bold = true })
-set(0, "markdownH5", { fg = colors.scale.blue[2], bold = true })
-set(0, "markdownH6", { fg = colors.scale.blue[2], bold = true })
-set(0, "markdownCode", { fg = colors.scale.blue[2] })
-set(0, "markdownCodeBlock", { fg = colors.scale.blue[2] })
-set(0, "markdownBlockquote", { fg = colors.scale.green[1] })
-set(0, "markdownListMarker", { fg = colors.scale.orange[2] })
-set(0, "markdownOrderedListMarker", { fg = colors.scale.orange[2] })
-set(0, "markdownRule", { fg = colors.scale.blue[2] })
-set(0, "markdownHeadingRule", { fg = colors.scale.blue[2] })
+set(0, "markdownH1", { fg = scale.blue[2], bold = true })
+set(0, "markdownH2", { fg = scale.blue[2], bold = true })
+set(0, "markdownH3", { fg = scale.blue[2], bold = true })
+set(0, "markdownH4", { fg = scale.blue[2], bold = true })
+set(0, "markdownH5", { fg = scale.blue[2], bold = true })
+set(0, "markdownH6", { fg = scale.blue[2], bold = true })
+set(0, "markdownCode", { fg = scale.blue[2] })
+set(0, "markdownCodeBlock", { fg = scale.blue[2] })
+set(0, "markdownBlockquote", { fg = scale.green[1] })
+set(0, "markdownListMarker", { fg = scale.orange[2] })
+set(0, "markdownOrderedListMarker", { fg = scale.orange[2] })
+set(0, "markdownRule", { fg = scale.blue[2] })
+set(0, "markdownHeadingRule", { fg = scale.blue[2] })
 set(0, "markdownUrlDelimiter", { fg = colors.fg_color.muted })
 set(0, "markdownLinkDelimiter", { fg = colors.fg_color.muted })
 set(0, "markdownLinkTextDelimiter", { fg = colors.fg_color.muted })
-set(0, "markdownHeadingDelimiter", { fg = colors.scale.blue[2] })
-set(0, "markdownUrl", { fg = colors.scale.blue[1], underline = true })
-set(0, "markdownUrlTitle", { fg = colors.scale.blue[1] })
-set(0, "markdownLinkText", { fg = colors.scale.blue[2], underline = true })
+set(0, "markdownHeadingDelimiter", { fg = scale.blue[2] })
+set(0, "markdownUrl", { fg = scale.blue[1], underline = true })
+set(0, "markdownUrlTitle", { fg = scale.blue[1] })
+set(0, "markdownLinkText", { fg = scale.blue[2], underline = true })
 set(0, "markdownIdDeclaration", { link = "markdownLinkText" })
 
 -- Plugins: NvimTree
@@ -384,37 +375,27 @@ set(0, "NvimTreeGitModified", { fg = colors.attention.fg })
 set(0, "NvimTreeGitDeleted", { fg = colors.danger.fg })
 set(0, "NvimTreeGitIgnored", { fg = colors.fg_color.muted })
 
--- Plugins: Telescope
-set(0, "TelescopeNormal", { fg = colors.fg_color.default, bg = colors.canvas.overlay })
-set(0, "TelescopeBorder", { fg = colors.border.default, bg = colors.canvas.overlay })
-set(0, "TelescopePromptBorder", { fg = colors.border.default, bg = colors.canvas.overlay })
-set(0, "TelescopeResultsBorder", { fg = colors.border.default, bg = colors.canvas.overlay })
-set(0, "TelescopePreviewBorder", { fg = colors.border.default, bg = colors.canvas.overlay })
-set(0, "TelescopePromptPrefix", { fg = colors.accent.fg })
-set(0, "TelescopeSelectionCaret", { fg = colors.accent.fg, bg = colors.neutral.muted })
-set(0, "TelescopeSelection", { fg = colors.fg_color.default, bg = colors.neutral.muted })
-set(0, "TelescopeMatching", { fg = colors.accent.fg, bold = true })
 
--- Plugins: Cmp (Completion)
+-- Completion
 set(0, "CmpItemAbbrMatch", { fg = colors.accent.fg, bold = true })
 set(0, "CmpItemAbbrMatchFuzzy", { fg = colors.accent.fg })
 set(0, "CmpItemKind", { fg = colors.fg_color.muted })
-set(0, "CmpItemKindVariable", { fg = colors.scale.orange[2] })
-set(0, "CmpItemKindFunction", { fg = colors.scale.purple[2] })
-set(0, "CmpItemKindMethod", { fg = colors.scale.purple[2] })
-set(0, "CmpItemKindKeyword", { fg = colors.scale.red[3] })
+set(0, "CmpItemKindVariable", { fg = scale.orange[2] })
+set(0, "CmpItemKindFunction", { fg = scale.purple[2] })
+set(0, "CmpItemKindMethod", { fg = scale.purple[2] })
+set(0, "CmpItemKindKeyword", { fg = scale.red[3] })
 set(0, "CmpItemKindText", { fg = colors.fg_color.default })
-set(0, "CmpItemKindConstant", { fg = colors.scale.blue[2] })
-set(0, "CmpItemKindConstructor", { fg = colors.scale.purple[2] })
-set(0, "CmpItemKindField", { fg = colors.scale.orange[2] })
-set(0, "CmpItemKindClass", { fg = colors.scale.orange[2] })
-set(0, "CmpItemKindInterface", { fg = colors.scale.orange[2] })
-set(0, "CmpItemKindModule", { fg = colors.scale.red[3] })
-set(0, "CmpItemKindProperty", { fg = colors.scale.blue[2] })
-set(0, "CmpItemKindEnum", { fg = colors.scale.orange[2] })
-set(0, "CmpItemKindSnippet", { fg = colors.scale.green[1] })
-set(0, "CmpItemKindFile", { fg = colors.scale.blue[2] })
-set(0, "CmpItemKindFolder", { fg = colors.scale.blue[2] })
+set(0, "CmpItemKindConstant", { fg = scale.blue[2] })
+set(0, "CmpItemKindConstructor", { fg = scale.purple[2] })
+set(0, "CmpItemKindField", { fg = scale.orange[2] })
+set(0, "CmpItemKindClass", { fg = scale.orange[2] })
+set(0, "CmpItemKindInterface", { fg = scale.orange[2] })
+set(0, "CmpItemKindModule", { fg = scale.red[3] })
+set(0, "CmpItemKindProperty", { fg = scale.blue[2] })
+set(0, "CmpItemKindEnum", { fg = scale.orange[2] })
+set(0, "CmpItemKindSnippet", { fg = scale.green[1] })
+set(0, "CmpItemKindFile", { fg = scale.blue[2] })
+set(0, "CmpItemKindFolder", { fg = scale.blue[2] })
 
 -- Terminal colors
 vim.g.terminal_color_0 = colors.ansi.black
