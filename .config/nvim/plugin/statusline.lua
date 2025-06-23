@@ -27,6 +27,40 @@ local function get_or_create_hl(hl)
     return hl_name
 end
 
+-- Get the higher diagnostic text.
+local function get_higher_diagnostic_text()
+    -- Get all diagnostics for the current buffer
+    local diagnostics = vim.diagnostic.get(0)
+
+    -- If no diagnostics, return empty
+    if #diagnostics == 0 then
+        return ""
+    end
+
+    -- Find the highest severity diagnostic
+    local highest_severity = nil
+
+    for _, diagnostic in ipairs(diagnostics) do
+        if not highest_severity or diagnostic.severity < highest_severity then
+            highest_severity = diagnostic.severity
+        end
+    end
+
+    -- Convert severity number to text
+    local severity_text = ""
+    if highest_severity == vim.diagnostic.severity.ERROR then
+        severity_text = "Error"
+    elseif highest_severity == vim.diagnostic.severity.WARN then
+        severity_text = "Warn"
+    elseif highest_severity == vim.diagnostic.severity.INFO then
+        severity_text = "Info"
+    elseif highest_severity == vim.diagnostic.severity.HINT then
+        severity_text = "Hint"
+    end
+
+    return severity_text
+end
+
 --- Current mode.
 ---@return string
 local function mode_component()
@@ -87,12 +121,7 @@ local function mode_component()
         hl = 'Command'
     end
 
-    -- Construct the bubble-like component.
-    return table.concat {
-        string.format('%%#StatuslineModeSeparator%s# ', hl),
-        string.format('%%#StatuslineMode%s#%s', hl, mode),
-        string.format('%%#StatuslineModeSeparator%s# ', hl),
-    }
+    return string.format('%%#StatuslineMode%s# %s ', hl, mode)
 end
 
 --- Git status (if any).
@@ -180,11 +209,6 @@ local last_diagnostic_component = ''
 --- Diagnostic counts in the current buffer.
 ---@return string
 local function diagnostics_component()
-    -- Lazy uses diagnostic icons, but those aren't errors per se.
-    if vim.bo.filetype == 'lazy' then
-        return ''
-    end
-
     -- Use the last computed value if in insert mode.
     if vim.startswith(vim.api.nvim_get_mode().mode, 'i') then
         return last_diagnostic_component
@@ -212,33 +236,13 @@ local function diagnostics_component()
         end)
         :totable()
 
-    return table.concat(parts, ' ')
+    return "%#StatuslineTitle# " .. table.concat(parts, ' ')
 end
 
 --- The buffer's filetype.
 ---@return string
 local function filetype_component()
---     local devicons = require 'nvim-web-devicons'
---
---     -- Special icons for some filetypes.
---     local special_icons = {
---         DiffviewFileHistory = { icons.misc.git, 'Number' },
---         DiffviewFiles = { icons.misc.git, 'Number' },
---         OverseerForm = { icons.misc.toolbox, 'Special' },
---         OverseerList = { icons.misc.toolbox, 'Special' },
---         ['ccc-ui'] = { icons.misc.palette, 'Comment' },
---         ['dap-view'] = { icons.misc.bug, 'Special' },
---         ['grug-far'] = { icons.misc.search, 'Constant' },
---         codecompanion = { icons.misc.robot, 'Conditional' },
---         fzf = { icons.misc.terminal, 'Special' },
---         gitcommit = { icons.misc.git, 'Number' },
---         gitrebase = { icons.misc.git, 'Number' },
---         lazy = { icons.symbol_kinds.Method, 'Special' },
---         lazyterm = { icons.misc.terminal, 'Special' },
---         minifiles = { icons.symbol_kinds.Folder, 'Directory' },
---         qf = { icons.misc.search, 'Conditional' },
---     }
---
+    local devicons = require('nvim-web-devicons')
     local filetype = vim.bo.filetype
     if filetype ~= '' then
         filetype = string.gsub(filetype, "^%l", string.upper)
@@ -246,43 +250,54 @@ local function filetype_component()
         filetype = '[No Name]'
     end
 
---     local icon, icon_hl
---     if special_icons[filetype] then
---         icon, icon_hl = unpack(special_icons[filetype])
---     else
---         local buf_name = vim.api.nvim_buf_get_name(0)
---         local name, ext = vim.fn.fnamemodify(buf_name, ':t'), vim.fn.fnamemodify(buf_name, ':e')
---
---         icon, icon_hl = devicons.get_icon(name, ext)
---         if not icon then
---             icon, icon_hl = devicons.get_icon_by_filetype(filetype, { default = true })
---         end
---     end
---     icon_hl = get_or_create_hl(icon_hl)
---
---     return string.format('%%#%s#%s %%#StatuslineTitle#%s', icon_hl, icon, filetype)
-    return string.format('%%#StatuslineTitle#%s', filetype)
+    local buf_name = vim.api.nvim_buf_get_name(0)
+    local name, ext = vim.fn.fnamemodify(buf_name, ':t'), vim.fn.fnamemodify(buf_name, ':e')
+
+    local icon, icon_hl = devicons.get_icon(name, ext)
+    if not icon then
+        icon, icon_hl = devicons.get_icon_by_filetype(filetype, { default = true })
+    end
+    icon_hl = get_or_create_hl(icon_hl)
+    --
+    return string.format('%%#%s#%s %%#StatuslineTitle#%s', icon_hl, icon, filetype)
 end
 
 --- Spaces for the current buffer.
 ---@return string
 local function spaces_component()
+    ---@diagnostic disable-next-line: undefined-field
     local spaces = vim.opt.shiftwidth:get()
-    return spaces ~= '' and string.format('%%#StatuslineModeSeparatorOther#Spaces: %s', spaces) or ''
+    return spaces ~= '' and string.format('%%#StatuslineModeSeparatorOther#Spaces: %s  ', spaces) or ''
 end
+
+local last_filename_component = ""
 
 --- Get the filename of the current buffer without the path (just the basename).
 ---@return string
 local function filename_component()
-    local filename = vim.api.nvim_buf_get_name(0)
-    return vim.fn.fnamemodify(filename, ":.")
+    -- Use the last computed value if in insert mode.
+    if vim.startswith(vim.api.nvim_get_mode().mode, 'i') then
+        return last_filename_component
+    end
+
+
+    local severity = get_higher_diagnostic_text()
+    local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":.")
+
+    local hl = "StatuslineTitle"
+    if severity ~= "" then
+        hl = "Diagnostic" .. severity
+    end
+
+    last_filename_component = string.format('%%#%s# %s ', hl, filename)
+    return last_filename_component
 end
 
 --- File-content encoding for the current buffer.
 ---@return string
 local function encoding_component()
     local encoding = vim.opt.fileencoding:get()
-    return encoding ~= '' and string.format('%%#StatuslineModeSeparatorOther# %s', string.upper(encoding)) or ''
+    return encoding ~= '' and string.format('%%#StatuslineModeSeparatorOther# %s ', string.upper(encoding)) or ''
 end
 
 --- The current line, total line count, and column position.
@@ -295,7 +310,7 @@ local function position_component()
     return table.concat {
         '%#StatuslineItalic#Ln: ',
         string.format('%%#StatuslineTitle#%d', line),
-        string.format('%%#StatuslineItalic#/%d Col: %d', line_count, col),
+        string.format('%%#StatuslineItalic#/%d Col: %d   ', line_count, col),
     }
 end
 
@@ -306,7 +321,7 @@ function _G.StatusLine()
     ---@return string
     local function concat_components(components)
         return vim.iter(components):skip(1):fold(components[1], function(acc, component)
-            return #component > 0 and string.format('%s  %s', acc, component) or acc
+            return #component > 0 and string.format('%s%s', acc, component) or acc
         end)
     end
 
