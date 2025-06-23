@@ -236,6 +236,7 @@ set(0, "@operator", { link = "Operator" })
 
 -- Literals
 set(0, "@string", { link = "String" })
+set(0, "@string.special.url", { fg = colors.scale.blue[2] })
 set(0, "@character", { link = "Character" })
 set(0, "@character.special", { link = "SpecialChar" })
 set(0, "@boolean", { link = "Boolean" })
