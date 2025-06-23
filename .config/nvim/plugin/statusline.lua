@@ -267,7 +267,7 @@ end
 local function spaces_component()
     ---@diagnostic disable-next-line: undefined-field
     local spaces = vim.opt.shiftwidth:get()
-    return spaces ~= '' and string.format('%%#StatuslineModeSeparatorOther#Spaces: %s  ', spaces) or ''
+    return spaces ~= '' and string.format('%%#StatuslineModeSeparatorOther#Spaces: %s    ', spaces) or ''
 end
 
 local last_filename_component = ""
@@ -297,7 +297,7 @@ end
 ---@return string
 local function encoding_component()
     local encoding = vim.opt.fileencoding:get()
-    return encoding ~= '' and string.format('%%#StatuslineModeSeparatorOther# %s ', string.upper(encoding)) or ''
+    return encoding ~= '' and string.format('%%#StatuslineModeSeparatorOther# %s    ', string.upper(encoding)) or ''
 end
 
 --- The current line, total line count, and column position.
