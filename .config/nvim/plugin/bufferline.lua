@@ -1,6 +1,8 @@
 vim.o.showtabline = 2
 vim.o.tabline = "%!v:lua.BufferLine()"
 
+local label = "File Explorer"
+local tree_filetype = "NvimTree"
 local bufferline_hls = {}
 
 ---Get or create a hightlight group.
@@ -62,11 +64,45 @@ local function get_higher_diagnostic_hl(bufnr, sel)
     return get_or_create_hl("Diagnostic" .. severity_text, sel)
 end
 
+---Function to check if nvim-tree is open
+---@param filetype string
+---@return boolean
+local function is_tree_open(filetype)
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+        local buf = vim.api.nvim_win_get_buf(win)
+        local buf_filetype = vim.bo[buf].filetype
+        if filetype == buf_filetype then
+            return true
+        end
+    end
+    return false
+end
+
+---Function to get nvim-tree width when open
+---@param filetype string
+---@return integer
+local function get_tree_width(filetype)
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+        local buf = vim.api.nvim_win_get_buf(win)
+        local buf_filetype = vim.bo[buf].filetype
+        if filetype == buf_filetype then
+            return vim.api.nvim_win_get_width(win)
+        end
+    end
+    return 0
+end
+
 function _G.BufferLine()
     local devicons = require("nvim-web-devicons")
     local s = ""
     local current = vim.api.nvim_get_current_buf()
     local count = 0
+
+    if is_tree_open(tree_filetype) then
+        s = s .. string.format("%%#%sHeader#%s", tree_filetype, label)
+        s = s .. string.rep(" ", get_tree_width(tree_filetype) - string.len(label))
+        s = s .. string.format("%%#%sWinSeparator#│", tree_filetype)
+    end
 
     -- Create a table to store dynamic highlight groups
     for _, buf in ipairs(vim.api.nvim_list_bufs()) do
