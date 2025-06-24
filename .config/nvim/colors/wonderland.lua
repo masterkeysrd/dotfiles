@@ -137,6 +137,8 @@ set(0, "StatuslineModeVisual", { fg = colors.canvas.subtle, bg = scale.yellow[3]
 set(0, "StatuslineModeCommand", { fg = colors.canvas.subtle, bg = scale.blue[3], bold = true })
 set(0, "StatuslineModePending", { fg = colors.canvas.subtle, bg = scale.pink[3], bold = true })
 set(0, "StatuslineTitle", { fg = scale.gray[5], bg = colors.canvas.subtle })
+set(0, "StatuslineNvimTree", { bg = colors.accent.fg, fg = colors.canvas.subtle, bold = true })
+set(0, "StatusLineNvimTreeIcon", { bg = colors.canvas.subtle, fg = colors.accent.fg })
 
 -- Tabline
 set(0, "TabLine", { fg = colors.fg_color.muted, bg = colors.canvas.subtle })
