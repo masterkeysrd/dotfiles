@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields
 ---@type vim.lsp.Config
 return {
     init_options = { hostInfo = 'neovim' },
@@ -36,7 +37,6 @@ return {
 
             vim.lsp.buf.code_action({
                 context = {
-                    ---@diagnostic disable-next-line: missing-fields
                     only = source_actions,
                 },
             })
