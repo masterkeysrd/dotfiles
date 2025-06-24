@@ -27,6 +27,27 @@ local function get_or_create_hl(hl)
     return hl_name
 end
 
+--- Get or create a hl group for separators.
+---@param hl string
+local function get_or_create_sep_hl(hl)
+    local hl_name = 'Statusline' .. hl .. "Sep"
+
+
+    if not statusline_hls[hl_name] then
+        -- If not in the cache, create the highlight group using the icon's foreground color
+        -- and the statusline's background color.
+        local base_hl = vim.api.nvim_get_hl(0, { name = hl })
+        if not base_hl or not base_hl.fg then
+            return hl_name
+        end
+
+        vim.api.nvim_set_hl(0, hl_name, { bg = ('#%06x'):format(base_hl.fg), fg = ('#%06x'):format(base_hl.bg) })
+        statusline_hls[hl_name] = true
+    end
+
+    return hl_name
+end
+
 -- Get the higher diagnostic text.
 local function get_higher_diagnostic_text()
     -- Get all diagnostics for the current buffer
@@ -61,9 +82,20 @@ local function get_higher_diagnostic_text()
     return severity_text
 end
 
---- Current mode.
+--- Get current path formatted.
 ---@return string
-local function mode_component()
+local function get_cwd_formatted()
+    local cwd = vim.fn.getcwd()
+    local home = os.getenv("HOME") or ""
+
+    local dir = cwd:gsub(home, "~")
+    return string.format(dir)
+end
+
+--- Current mode.
+---@param sep string
+---@return string
+local function mode_component(sep)
     -- Note that: \19 = ^S and \22 = ^V.
     local mode_to_str = {
         ['n'] = 'NORMAL',
@@ -108,7 +140,7 @@ local function mode_component()
     local mode = mode_to_str[vim.api.nvim_get_mode().mode] or 'UNKNOWN'
 
     -- Set the highlight group.
-    local hl = 'Other'
+    local hl = ''
     if mode:find 'NORMAL' then
         hl = 'Normal'
     elseif mode:find 'PENDING' then
@@ -121,7 +153,9 @@ local function mode_component()
         hl = 'Command'
     end
 
-    return string.format('%%#StatuslineMode%s# %s ', hl, mode)
+    local mode_hl = "StatuslineMode" .. hl
+    local sep_hl = get_or_create_sep_hl(mode_hl)
+    return string.format('%%#%s# %s %%#%s#%s ', mode_hl, mode, sep_hl, sep)
 end
 
 --- Git status (if any).
@@ -149,7 +183,7 @@ local function dap_component()
         return nil
     end
 
-    return string.format('%%#%s#%s  %s', get_or_create_hl 'Special', icons.misc.bug, require('dap').status())
+    return string.format('%%#%s#%s  %s', get_or_create_hl('Special'), icons.misc.bug, require('dap').status())
 end
 
 ---@type table<string, string?>
@@ -314,9 +348,38 @@ local function position_component()
     }
 end
 
+--- Modifies the status line when is in nvim-tree buffer
+---@param sep string
+---@return string
+local function nvim_tree_extension(sep)
+    if vim.bo.filetype ~= "NvimTree" then
+        return ""
+    end
+
+    local cwd = get_cwd_formatted()
+    local cwd_sep_hl = get_or_create_sep_hl("StatusLineNvimTree")
+    local icon_sep_hl = get_or_create_sep_hl("StatusLineNvimTreeIcon")
+
+    local icon_part = string.format("%%#StatusLineNvimTreeIcon# 👻 %%#%s#%s%%*", icon_sep_hl, sep)
+    local cwd_part =
+        string.format("%%#StatusLineNvimTree# %s %%#%s#%s ", cwd, cwd_sep_hl, sep)
+    return icon_part .. cwd_part
+end
+
+local extensions = {
+    nvim_tree_extension
+}
+
 --- Renders the statusline.
 ---@return string
 function _G.StatusLine()
+    for _, extension in ipairs(extensions) do
+        local text = extension(icons.separator.left)
+        if text ~= "" then
+            return text .. "%#StatusLine#%="
+        end
+    end
+
     ---@param components string[]
     ---@return string
     local function concat_components(components)
@@ -326,13 +389,13 @@ function _G.StatusLine()
     end
 
     return table.concat {
-        concat_components {
-            mode_component(),
+        concat_components({
+            mode_component(icons.separator.left),
             git_component(),
             diagnostics_component(),
             dap_component() or lsp_progress_component(),
             filename_component(),
-        },
+        }),
         '%#StatusLine#%=',
         concat_components {
             position_component(),

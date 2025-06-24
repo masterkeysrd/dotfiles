@@ -58,5 +58,8 @@ M.symbol_kinds = {
     TypeParameter = '', --- [25] TypeParameter
 }
 
+M.separtor {
+    left = '', right = ''
+}
 
 return M
