@@ -8,7 +8,7 @@ vim.g.maplocalleader = " "
 
 -- Show white spaces.
 vim.o.list = true
-vim.o.listchars = "tab:▸ ,trail:·,extends:»,precedes:«"
+-- vim.o.listchars = "tab:▸ ,trail:·,extends:»,precedes:«"
 
 -- Show line numbers.
 vim.o.number = true
@@ -36,7 +36,6 @@ vim.o.foldlevelstart = 99
 vim.o.foldtext = ""
 
 -- UI Characters
--- UI characters.
 vim.opt.fillchars = {
     eob = ' ',
     fold = ' ',
