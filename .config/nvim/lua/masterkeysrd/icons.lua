@@ -10,16 +10,16 @@ M.diagnostics = {
 
 ---- For folding.
 M.arrows = {
-    right = '',
-    left = '',
-    up = '',
-    down = '',
+    right = '▸',
+    left = '▸',
+    up = '▴',
+    down = '▾',
 }
 
 --- Shared icons that don't really fit into a category.
 M.misc = {
     bug = '',
-    dashed_bar = '┊',
+    dashed_bar = '╏',
     ellipsis = '…',
     git = '',
     palette = '󰏘',
@@ -27,7 +27,8 @@ M.misc = {
     search = '',
     terminal = '',
     toolbox = '󰦬',
-    vertical_bar = '│',
+    vertical_bar = '▎',
+    right_arrow = ""
 }
 
 M.symbol_kinds = {
@@ -58,7 +59,7 @@ M.symbol_kinds = {
     TypeParameter = '', --- [25] TypeParameter
 }
 
-M.separtor {
+M.separator = {
     left = '', right = ''
 }
 
