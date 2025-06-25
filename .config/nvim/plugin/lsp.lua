@@ -59,21 +59,12 @@ local function convert_completion_item(item)
 
     local abbr = ""
     if kind_icon ~= "" then
-        -- abbr = string.format("%%#CmpItemKind%s#%s%%*", kind_name, kind_icon)
         abbr = kind_icon .. " "
     end
-
 
     -- Add the label, removing any parentheses
     local label = item.label:gsub("%b()", "")
     local hl_group = "CmpItemKind" .. kind_name
-    print(hl_group)
-
-
-    -- local menu = ""
-    -- if item.kind == completion_kind.Snippet then
-    --     menu = item.detail or "Snippet"
-    -- end
 
     return {
         abbr = abbr,
