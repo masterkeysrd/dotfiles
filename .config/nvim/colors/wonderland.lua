@@ -12,7 +12,6 @@ local scale = {
     pink = { "#ffdaec", "#ffbedd", "#ff9bce", "#f778ba", "#db61a2", "#bf4b8a", "#9e3670", "#7d2457", "#5e103e" },
 }
 
-
 local colors = {
     -- Base colors from GitHub Dark theme
     fg_color = {
@@ -125,6 +124,7 @@ set(0, "Title", { fg = scale.blue[2], bold = true })
 set(0, "Search", { fg = colors.canvas.default, bg = scale.yellow[2] })
 set(0, "IncSearch", { fg = colors.canvas.default, bg = scale.yellow[1] })
 set(0, "MatchParen", { bg = scale.green[8], fg = scale.green[2] })
+set(0, "Whitespace", { fg = scale.gray[8] })
 
 -- Status Line
 set(0, "StatusLine", { fg = scale.gray[5], bg = colors.canvas.subtle })
@@ -302,6 +302,9 @@ set(0, "@tag.delimiter", { fg = colors.fg_color.muted })
 set(0, "@punctuation.delimiter", { fg = colors.fg_color.default }) -- Generic delimiters
 set(0, "@punctuation.bracket", { fg = scale.orange[3] })           -- Generic brackets
 
+-- LSP Features
+set(0, "LspCodeLens", { fg = scale.pink[3] })
+
 -- LSP semantic tokens
 set(0, "@lsp.type.namespace", { link = "@namespace" })
 set(0, "@lsp.type.type", { link = "@type" })
@@ -338,8 +341,9 @@ set(0, "DiagnosticUnderlineHint", { sp = colors.done.fg, undercurl = true })
 
 -- Git
 set(0, "GitSignsAdd", { fg = colors.success.fg })
-set(0, "GitSignsChange", { fg = colors.attention.fg })
+set(0, "GitSignsChange", { fg = colors.accent.fg })
 set(0, "GitSignsDelete", { fg = colors.danger.fg })
+set(0, "GitSignsCurrentLineBlame", { fg = scale.gray[6] })
 
 -- Markdown
 set(0, "markdownH1", { fg = scale.blue[2], bold = true })
