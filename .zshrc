@@ -23,9 +23,11 @@ source $HOME/.config/masterkeys/zsh_custom.sh
 source $HOME/.config/masterkeys/zsh_init.sh
 
 git() {
-	if [ "$PWD" = "$HOME" ]; then
-		command git --git-dir="$HOME/.dotfiles" --work-tree="$HOME" "$@"
-	else
-		command git "$@"
-	fi
+  if [ "$PWD" = "$HOME" ] || [ "$PWD" = "$HOME/.config/nvim" ]; then
+    command git --git-dir="$HOME/.dotfiles" --work-tree="$HOME" "$@"
+  else
+    command git "$@"
+  fi
 }
+
+export GPG_TTY=$(tty)
