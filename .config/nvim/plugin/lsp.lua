@@ -4,6 +4,16 @@ local methods = vim.lsp.protocol.Methods
 -- Disable inlay hints initially (and enable if needed with my ToggleInlayHints command).
 vim.g.inlay_hints = false
 
+local function toggle_inlay_hints()
+    vim.g.inlay_hints = not vim.g.inlay_hints
+    vim.notify(string.format('%s inlay hints...', vim.g.inlay_hints and 'Enabling' or 'Disabling'), vim.log.levels.INFO)
+
+    local mode = vim.api.nvim_get_mode().mode
+    vim.lsp.inlay_hint.enable(vim.g.inlay_hints and (mode == 'n' or mode == 'v'))
+end
+
+vim.api.nvim_create_user_command('ToggleInlayHints', toggle_inlay_hints, { desc = 'Toggle inlay hints', nargs = 0 })
+
 --- Create the LSP Auto command group
 local lspgroup = vim.api.nvim_create_augroup("lsp", { clear = true })
 
@@ -211,13 +221,17 @@ local function on_attach(client, bufnr)
     end
 
 
-    if client:supports_method(methods.textDocument_inlayHint) and vim.g.inlay_hints then
-        -- Initial inlay hint display.
-        -- Idk why but without the delay inlay hints aren't displayed at the very start.
-        vim.defer_fn(function()
-            local mode = vim.api.nvim_get_mode().mode
-            vim.lsp.inlay_hint.enable(mode == "n" or mode == "v", { bufnr = bufnr })
-        end, 500)
+    if client:supports_method(methods.textDocument_inlayHint) then
+        keymap("n", "gh", toggle_inlay_hints, "Toggle inlay hints")
+
+        if vim.g.inlay_hints then
+            -- Initial inlay hint display.
+            -- Idk why but without the delay inlay hints aren't displayed at the very start.
+            vim.defer_fn(function()
+                local mode = vim.api.nvim_get_mode().mode
+                vim.lsp.inlay_hint.enable(mode == "n" or mode == "v", { bufnr = bufnr })
+            end, 500)
+        end
 
         create_autocmd("InsertEnter", "Enable inlay hints", function()
             if vim.g.inlay_hints then
