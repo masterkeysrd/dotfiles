@@ -1,3 +1,5 @@
+local modified_icon = require('masterkeysrd.icons').misc.modfied
+
 vim.o.showtabline = 2
 vim.o.tabline = "%!v:lua.BufferLine()"
 
@@ -130,8 +132,7 @@ function _G.BufferLine()
             icon_hl = get_or_create_hl(icon_hl, buf == current)
             local icon_str = icon and (icon_hl and string.format("%%#%s#%s%%*", icon_hl, icon) or icon) or ""
 
-
-            local modified = vim.bo[buf].modified and " [+]" or ""
+            local trail_icon = vim.bo[buf].modified and modified_icon or " "
 
             local diagnostic_hl = get_higher_diagnostic_hl(buf, buf == current)
             if diagnostic_hl ~= "" then
@@ -140,9 +141,9 @@ function _G.BufferLine()
 
             -- Buffer click target
             s = s ..
-                string.format("%s%%%d@v:lua.SwitchToBuffer@ %d. %s%s %s%s │", hl_group, buf, count, icon_str, hl_group,
+                string.format("%s%%%d@v:lua.SwitchToBuffer@ %d. %s%s %s %s │", hl_group, buf, count, icon_str, hl_group,
                     name,
-                    modified)
+                    trail_icon)
         end
     end
 
@@ -151,5 +152,9 @@ function _G.BufferLine()
 end
 
 function _G.SwitchToBuffer(bufnr, _)
+    vim.api.nvim_set_current_buf(bufnr)
+end
+
+function _G.CloseBuffer(bufnr, _)
     vim.api.nvim_set_current_buf(bufnr)
 end
