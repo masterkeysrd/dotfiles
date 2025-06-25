@@ -28,7 +28,8 @@ M.misc = {
     terminal = '',
     toolbox = '󰦬',
     vertical_bar = '▎',
-    right_arrow = ""
+    right_arrow = "",
+    modfied = "●"
 }
 
 M.symbol_kinds = {
@@ -61,6 +62,12 @@ M.symbol_kinds = {
 
 M.separator = {
     left = '', right = ''
+}
+
+M.git_symbol = {
+    added = ' ',
+    changed = ' ',
+    removed = ' ',
 }
 
 return M

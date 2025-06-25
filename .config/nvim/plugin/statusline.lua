@@ -30,7 +30,10 @@ end
 --- Get or create a hl group for separators.
 ---@param hl string
 local function get_or_create_sep_hl(hl)
-    local hl_name = 'Statusline' .. hl .. "Sep"
+    local hl_name = hl .. "Sep"
+    if hl:find("^StatusLine") == nil then
+        hl_name = "StatusLine" .. hl_name
+    end
 
 
     if not statusline_hls[hl_name] then
@@ -155,7 +158,7 @@ local function mode_component(sep)
 
     local mode_hl = "StatuslineMode" .. hl
     local sep_hl = get_or_create_sep_hl(mode_hl)
-    return string.format('%%#%s# %s %%#%s#%s ', mode_hl, mode, sep_hl, sep)
+    return string.format('%%#%s# %s %%#%s#%s', mode_hl, mode, sep_hl, sep)
 end
 
 --- Git status (if any).
@@ -166,14 +169,18 @@ local function git_component()
         return ''
     end
 
-    local component = string.format(' %s', head)
-
-    local num_hunks = #(require('gitsigns').get_hunks() or {})
-    if num_hunks > 0 then
-        component = component .. string.format(' (#Hunks: %d)', num_hunks)
+    local component = head
+    local gitsigns = vim.b.gitsigns_status_dict
+    if gitsigns then
+        for _, key in ipairs({ "added", "changed", "removed" }) do
+            local sign = gitsigns[key]
+            if sign and sign > 0 then
+                component = component .. string.format(" %s%d", icons.git_symbol[key], sign)
+            end
+        end
     end
 
-    return component
+    return " " .. component
 end
 
 --- The current debugging status (if any).
@@ -269,6 +276,10 @@ local function diagnostics_component()
             return string.format('%%#%s#%s %d', get_or_create_hl(hl), icons.diagnostics[severity], count)
         end)
         :totable()
+
+    if #parts == 0 then
+        return ""
+    end
 
     return "%#StatuslineTitle# " .. table.concat(parts, ' ')
 end
