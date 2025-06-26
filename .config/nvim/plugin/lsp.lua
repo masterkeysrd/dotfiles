@@ -180,6 +180,14 @@ local function on_attach(client, bufnr)
         keymap("n", "<F4>", vim.lsp.buf.code_action, "LSP Code action")
     end
 
+    if client:supports_method(methods.textDocument_documentColor, bufnr) then
+        -- Nvim still do not release this feature but will be great to have when they
+        -- do it.
+        if vim.lsp.document_color then
+            vim.lsp.document_color.enable()
+        end
+    end
+
     if client:supports_method(methods.textDocument_completion) then
         vim.lsp.completion.enable(true, client.id, bufnr, {
             autotrigger = true,
