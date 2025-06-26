@@ -169,7 +169,7 @@ local function git_component()
         return ''
     end
 
-    local component = head
+    local component = icons.misc.git .. " " .. head
     local gitsigns = vim.b.gitsigns_status_dict
     if gitsigns then
         for _, key in ipairs({ "added", "changed", "removed" }) do
