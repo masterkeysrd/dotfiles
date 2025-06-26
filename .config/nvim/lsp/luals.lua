@@ -17,7 +17,8 @@ return {
                 }
             },
             hint = {
-                enable = true
+                enable = true,
+                arrayIndex = 'Disable',
             },
             telemetry = {
                 enable = false
