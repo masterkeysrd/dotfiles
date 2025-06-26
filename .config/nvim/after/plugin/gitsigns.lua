@@ -18,6 +18,12 @@ gs.setup({
         changedelete = { text = icons.misc.vertical_bar },
         untracked = { text = icons.misc.vertical_bar },
     },
+    worktrees = {
+        {
+            toplevel = vim.env.HOME,
+            gitdir = vim.env.HOME .. '/.dotfiles'
+        }
+    },
     on_attach = function(bufnr)
         vim.api.nvim_buf_set_var(bufnr, 'gitsigns_status_dict', {})
         local function opts(desc)
