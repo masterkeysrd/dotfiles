@@ -111,9 +111,15 @@ local function show_documentation_floating_win(event)
     local kind = (type(documentation) == "table" and documentation.kind) or "markdown"
 
     if lsp_comp.completion_item.detail and lsp_comp.completion_item.detail ~= "" then
-        local details = lsp_comp.completion_item.detail
+        local details = lsp_comp.completion_item.detail or ""
         if kind == "markdown" then
-            details = "`" .. details .. "`"
+            -- Sometimes scape chars come bad formated so normalize.
+            details:gsub("\\\\[", "[")
+
+            -- Format the markdown text.
+            details = "```" .. vim.bo.filetype .. "\n" ..
+                details .. "\n" ..
+                "```"
         end
         table.insert(contents, details .. "\n\n")
     end
@@ -132,11 +138,16 @@ local function show_documentation_floating_win(event)
     end
 
     local offset_text = event.completed_item.word
+    local offset_x = event.width - #offset_text + 1
+    local win_width = vim.api.nvim_win_get_width(0)
+    local max_width = win_width - offset_x - 2        -- subtract a small padding
+    max_width = math.max(20, math.min(max_width, 80)) -- restrict the size
+
     vim.schedule(function()
         vim.lsp.util.open_floating_preview(contents, kind, {
             title = "Documentation",
-            max_width = vim.g.lsp.previewwidth or 100,
-            offset_x = event.width - #offset_text + 1,
+            max_width = vim.g.lsp.previewwidth or max_width or 60,
+            offset_x = offset_x,
             close_events = { "CompleteChanged", "CompleteDone", "InsertLeave" },
         })
     end)
