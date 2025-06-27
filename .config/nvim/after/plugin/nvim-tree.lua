@@ -100,9 +100,6 @@ nvim_tree.setup({
             error = "",
         },
     },
-    update_focused_file = {
-        enable = true,
-    },
     on_attach = on_attach,
 })
 
