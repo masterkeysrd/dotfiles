@@ -16,6 +16,7 @@ vim.keymap.set('v', '>', '>gv')
 vim.keymap.set('n', 'gQ', 'mzgggqG`z<cmd>delmarks z<cr>zz', { desc = 'Format buffer' })
 
 -- Switch between windows.
+vim.keymap.set('n', '<C-w>', function() vim.cmd("bd") end, { desc = 'Close tab', remap = true })
 vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Move to the left window', remap = true })
 vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Move to the bottom window', remap = true })
 vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Move to the top window', remap = true })
