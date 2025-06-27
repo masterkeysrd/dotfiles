@@ -1,5 +1,6 @@
 local ok, nvim_tree = pcall(require, "nvim-tree")
 local notify_opts = { title = "Editor" }
+local icons = require('masterkeysrd.icons')
 
 if not ok then
     vim.notify("nvim-tree.lua not found", vim.log.levels.ERROR, notify_opts)
@@ -40,22 +41,24 @@ nvim_tree.setup({
     actions = {
         change_dir = {
             restrict_above_cwd = true,
-        }
+        },
+        remove_file = {
+            close_window = false, -- Prevents breaking the tabs layout.
+        },
     },
     renderer = {
         group_empty = true,
         highlight_git = true,
-        -- I want to set the icon for the root folder
         root_folder_label = ":t",
         indent_markers = {
             enable = true,
             inline_arrows = true,
             icons = {
-                corner = "└",
-                edge = "│",
-                item = "│",
-                bottom = "─",
-                none = " ",
+                corner = icons.border.corner,
+                edge = icons.border.vertical,
+                item = icons.border.vertical,
+                bottom = icons.border.horizontal,
+                none = icons.border.none,
             },
         },
         icons = {
@@ -94,10 +97,10 @@ nvim_tree.setup({
     diagnostics = {
         enable = true,
         icons = {
-            hint = "",
-            info = "",
-            warning = "",
-            error = "",
+            hint = icons.diagnostics.HINT,
+            info = icons.diagnostics.INFO,
+            warning = icons.diagnostics.WARN,
+            error = icons.diagnostics.ERROR,
         },
     },
     on_attach = on_attach,

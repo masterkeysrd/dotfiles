@@ -64,6 +64,14 @@ M.separator = {
     left = '', right = ''
 }
 
+
+M.border = {
+    corner = "└",
+    vertical = "│",
+    horizontal = "─",
+    none = " ",
+}
+
 M.git_symbol = {
     added = ' ',
     changed = ' ',
