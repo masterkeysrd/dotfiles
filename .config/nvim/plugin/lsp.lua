@@ -189,6 +189,7 @@ local function on_attach(client, bufnr)
     if client:supports_method(methods.textDocument_codeAction) then
         keymap("n", "gra", vim.lsp.buf.code_action, "LSP Code action")
         keymap("n", "<F4>", vim.lsp.buf.code_action, "LSP Code action")
+        require('masterkeysrd.lightbulb').attach_lightbulb(bufnr, client.id)
     end
 
     if client:supports_method(methods.textDocument_documentColor, bufnr) then
