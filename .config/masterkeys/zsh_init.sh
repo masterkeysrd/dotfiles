@@ -21,3 +21,11 @@ load_localrc() {
 }
 
 load_localrc
+
+# Custom commands.
+clear() {
+    command clear
+    if [[ -n "$TMUX" ]]; then
+        tmux clear-history
+    fi
+}
