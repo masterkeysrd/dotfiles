@@ -115,7 +115,7 @@ set(0, "Cursor", { bg = colors.accent.fg })
 set(0, "CursorLine", { bg = colors.canvas.overlay })
 set(0, "CursorLineNr", { fg = colors.fg_color.default, bold = true })
 set(0, "LineNr", { fg = scale.gray[6], bg = colors.canvas.default })
-set(0, "Visual", { bg = scale.gray[8] })
+set(0, "Visual", { bg = scale.blue[8] })
 set(0, "VisualNOS", { bg = colors.neutral.subtle })
 set(0, "NonText", { fg = colors.border.muted })
 set(0, "SpecialKey", { fg = colors.border.muted })
@@ -157,7 +157,7 @@ set(0, "FoldColumn", { fg = colors.fg_color.muted, bg = colors.canvas.default })
 
 -- Signs and Columns
 set(0, "SignColumn", { fg = colors.fg_color.default, bg = colors.canvas.default })
-set(0, "ColorColumn", { bg = colors.neutral.subtle })
+set(0, "ColorColumn", { bg = colors.neutral.emphasis })
 
 -- Spelling
 set(0, "SpellBad", { sp = colors.danger.fg, undercurl = true })
@@ -370,9 +370,9 @@ set(0, "markdownLinkText", { fg = scale.blue[2], underline = true })
 set(0, "markdownIdDeclaration", { link = "markdownLinkText" })
 
 -- Plugins: NvimTree
-set(0, "NvimTreeNormal", { fg = colors.fg_color.default, bg = colors.canvas.subtle })
-set(0, "NvimTreeHeader", { fg = colors.fg_color.default, bg = colors.canvas.subtle, bold = true })
-set(0, "NvimTreeEndOfBuffer", { bg = colors.canvas.subtle })
+set(0, "NvimTreeNormal", { fg = colors.fg_color.default, bg = colors.canvas.default })
+set(0, "NvimTreeHeader", { fg = colors.fg_color.default, bg = colors.canvas.default, bold = true })
+set(0, "NvimTreeEndOfBuffer", { bg = colors.canvas.default })
 set(0, "NvimTreeFolderIcon", { fg = scale.gray[5] })
 set(0, "NvimTreeRootFolder", { fg = colors.fg_color.muted, bold = true })
 set(0, "NvimTreeFolderName", { fg = colors.fg_color.default })
