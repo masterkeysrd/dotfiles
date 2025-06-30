@@ -29,3 +29,16 @@ clear() {
         tmux clear-history
     fi
 }
+
+function lg() {
+  if [[ "$PWD" == "$HOME" ]]; then
+    # LazyGit for dotfiles bare repo
+    lazygit --git-dir="$HOME/.dotfiles" --work-tree="$HOME"
+  else
+    # Normal lazygit
+    lazygit
+  fi
+}
+
+
+## Alias
