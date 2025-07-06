@@ -117,6 +117,22 @@ local function opts(desc)
     return { noremap = true, silent = true, desc = desc }
 end
 
-map("n", "<leader>e", vim.cmd.NvimTreeToggle, opts("Toggle NvimTree"))
-map("n", "<leader>e", vim.cmd.NvimTreeToggle, opts("Toggle NvimTree"))
-map("n", "<C-e>", vim.cmd.NvimTreeToggle, opts("Toggle NvimTree"))
+local function open_tree_current_file()
+    api.tree.toggle({
+        find_file = true,
+        focus = true,
+    })
+end
+
+local function find_current_file()
+    api.tree.find_file({
+        open = true,
+        focus = true,
+    })
+end
+
+
+map("n", "<leader>e", open_tree_current_file, opts("Toggle NvimTree"))
+map("n", "<leader>E", find_current_file, opts("Toggle NvimTree"))
+map("n", "<C-e>", open_tree_current_file, opts("Toggle NvimTree"))
+map("n", "<C-b>", find_current_file, opts("Toggle NvimTree"))
