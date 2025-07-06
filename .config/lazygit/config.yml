@@ -1,0 +1,21 @@
+os:
+  editPreset: 'nvim'
+gui:
+  nerdFontsVersion: "3"
+  authorColors:
+    '*': "#ff7b72"
+  theme:
+    activeBorderColor:
+      - "#58a6ff"
+      - bold
+    inactiveBorderColor:
+      - "#f6f8fa"
+    optionsTextColor:
+      - "#58a6ff"
+    selectedLineBgColor:
+      - "#444d56"
+    unstagedChangesColor:
+      - "#c04a45"
+    defaultFgColor:
+      - "#f6f8fa"
+
