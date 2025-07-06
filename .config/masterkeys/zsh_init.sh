@@ -41,4 +41,5 @@ function lg() {
 }
 
 
-## Alias
+## Set default variables
+export XDG_CONFIG_HOME="$HOME/.config"
