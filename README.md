@@ -6,12 +6,11 @@ install them on a new machine.
 
 ## Installation
 
-To install the dot files, run the following commands:
+Clone the repository as bare repo and set it up in your `$HOME` directory.
 
 ```bash
-wget -O - https://raw.githubusercontent.com/masterkeysrd/dotfiles/refs/heads/master/install.sh | bash
-# or
-curl -fsSL https://raw.githubusercontent.com/masterkeysrd/dotfiles/refs/heads/master/install.sh | bash
+git clone --bare git@github.com:masterkeysrd/dotfiles.git .dotfiles
+git --git-dir=$HOME/.dotfiles --work-tree=$HOME checkout -f
 ```
 
 > NOTE: The install script is not ready yet. It is still a work in progress.
