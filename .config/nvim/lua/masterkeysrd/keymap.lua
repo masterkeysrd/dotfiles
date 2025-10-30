@@ -39,3 +39,8 @@ vim.keymap.set({ 's', 'i', 'n', 'v' }, '<C-S-s>', '<esc>:wa<cr>',
 
 vim.keymap.set('n', 'H', vim.cmd.bp, { desc = 'Previous buffer' })
 vim.keymap.set('n', 'L', vim.cmd.bn, { desc = 'Next buffer' })
+
+vim.keymap.set('n', '<leader>R', '<cmd>restart<cr>', { desc = 'Restart Neovim' })
+
+-- Quickly go to the end of the line while in insert mode.
+vim.keymap.set({ 'i', 'c' }, '<C-l>', '<C-o>A', { desc = 'Go to the end of the line' })

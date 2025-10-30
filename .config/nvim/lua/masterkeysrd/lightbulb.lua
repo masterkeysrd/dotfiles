@@ -91,10 +91,6 @@ end
 M.attach_lightbulb = function(bufnr, client_id)
     local client = vim.lsp.get_client_by_id(client_id)
 
-    if not client or not client:supports_method(code_action_method) then
-        return
-    end
-
     local buf_group_name = lb_name .. tostring(bufnr)
     if pcall(vim.api.nvim_get_autocmds, { group = buf_group_name, buffer = bufnr }) then
         return

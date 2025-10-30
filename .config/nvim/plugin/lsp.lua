@@ -88,6 +88,7 @@ end
 --- Show documentation floating windows.
 ---@param event vim.v.event
 local function show_documentation_floating_win(event)
+    vim.inspect(event)
     if not (event and event.completed_item) then
         return
     end
@@ -337,21 +338,28 @@ local function on_attach(client, bufnr)
     if client:supports_method(methods.textDocument_rename) then
         keymap("n", "<F2>", vim.lsp.buf.rename, "Resymbol")
     end
-end
 
-local function auto_configure()
-    local configs = {}
-    for _, path in ipairs(vim.api.nvim_get_runtime_file("lsp/*.lua", true)) do
-        local name = vim.fn.fnamemodify(path, ":t:r") -- get filename
-        configs[name] = true
+    -- Add "Fix all" command for linters.
+    if client.name == 'eslint' or client.name == 'stylelint_lsp' then
+        vim.keymap.set('n', '<leader>cl', function()
+            if not client then
+                return
+            end
+
+            client:request('workspace/executeCommand', {
+                command = client.name == 'eslint' and 'eslint.applyAllFixes' or 'stylelint.applyAutoFixes',
+                arguments = {
+                    {
+                        uri = vim.uri_from_bufnr(bufnr),
+                        version = vim.lsp.util.buf_versions[bufnr],
+                    },
+                },
+            }, nil, bufnr)
+        end, {
+            desc = string.format('Fix all %s errors', client.name == 'eslint' and 'ESLint' or 'Stylelint'),
+            buffer = bufnr,
+        })
     end
-
-    local enable_list = {}
-    for name, _ in pairs(configs) do
-        table.insert(enable_list, name)
-    end
-
-    vim.lsp.enable(enable_list, true)
 end
 
 
@@ -379,8 +387,27 @@ vim.lsp.handlers[methods.client_registerCapability] = function(err, res, ctx)
 end
 
 
+local hover = vim.lsp.buf.hover
+---@diagnostic disable-next-line: duplicate-set-field
+vim.lsp.buf.hover = function()
+    return hover {
+        max_height = math.floor(vim.o.lines * 0.5),
+        max_width = math.floor(vim.o.columns * 0.4),
+    }
+end
+
+local signature_help = vim.lsp.buf.signature_help
+---@diagnostic disable-next-line: duplicate-set-field
+vim.lsp.buf.signature_help = function()
+    return signature_help {
+        max_height = math.floor(vim.o.lines * 0.5),
+        max_width = math.floor(vim.o.columns * 0.4),
+    }
+end
+
 vim.api.nvim_create_autocmd("LspAttach", {
     group = lspgroup,
+    desc = "Configure LSP Keymaps",
     callback = function(args)
         local buf = args.buf
         local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
@@ -428,4 +455,15 @@ end
 vim.api.nvim_create_user_command("LspStart", enable, {})
 vim.api.nvim_create_user_command("LspStop", disable, {})
 
-auto_configure()
+-- Set up LSP servers.
+vim.api.nvim_create_autocmd({ 'BufReadPre', 'BufNewFile' }, {
+    once = true,
+    callback = function()
+        local server_configs = vim.iter(vim.api.nvim_get_runtime_file('lsp/*.lua', true))
+            :map(function(file)
+                return vim.fn.fnamemodify(file, ':t:r')
+            end)
+            :totable()
+        vim.lsp.enable(server_configs)
+    end,
+})

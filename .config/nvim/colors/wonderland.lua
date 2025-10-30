@@ -303,7 +303,7 @@ set(0, "@punctuation.delimiter", { fg = colors.fg_color.default }) -- Generic de
 set(0, "@punctuation.bracket", { fg = scale.orange[3] })           -- Generic brackets
 
 -- LSP Features
-set(0, "LspCodeLens", { fg = scale.pink[3] })
+set(0, "LspCodeLens", { fg = scale.pink[3], underline = true })
 set(0, "LSPInlayHint", { fg = scale.gray[4], bg = scale.gray[8] })
 
 -- LSP semantic tokens

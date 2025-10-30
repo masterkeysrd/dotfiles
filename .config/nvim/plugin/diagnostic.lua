@@ -1,3 +1,5 @@
+local icons = require("masterkeysrd.icons")
+
 vim.diagnostic.config({
     signs = {
         text = {
@@ -13,6 +15,11 @@ vim.diagnostic.config({
     },
     float = {
         border = "double",
+        prefix = function(diag)
+            local level = vim.diagnostic.severity[diag.severity]
+            local prefix = string.format(' %s ', icons.diagnostics[level])
+            return prefix, 'Diagnostic' .. level:gsub("^%l", string.upper)
+        end
     },
     jump = {
         float = true,
