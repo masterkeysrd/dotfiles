@@ -7,8 +7,9 @@ return {
     settings = {
         autoformat = true,
         json = {
-            -- validate = { enable = true },
-            -- schemas = require('schemastore').json.schemas(),
+            format = { enable = true },
+            validate = { enable = true },
+            schemas = require('schemastore').json.schemas(),
         },
     },
 }
