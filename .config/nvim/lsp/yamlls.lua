@@ -5,7 +5,6 @@ return {
     cmd = { 'yaml-language-server', '--stdio' },
     filetypes = { 'yaml' },
     settings = {
-        autoformat = true,
         yaml = {
             -- Using the schemastore plugin for schemas.
             schemastore = { enable = false, url = '' },

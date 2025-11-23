@@ -5,7 +5,6 @@ return {
     cmd = { 'vscode-json-language-server', '--stdio' },
     filetypes = { 'json', 'jsonc' },
     settings = {
-        autoformat = true,
         json = {
             format = { enable = true },
             validate = { enable = true },
