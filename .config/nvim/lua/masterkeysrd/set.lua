@@ -16,8 +16,9 @@ vim.o.number = true
 -- Disable horizontal scrolling.
 vim.o.mousescroll = 'ver:3,hor:0'
 
--- Wrap long line words.
-vim.o.linebreak = true
+-- Disable line wrapping.
+vim.o.linebreak = false
+vim.o.wrap = false
 
 -- Enable mouse mode.
 vim.o.mouse = 'a'
