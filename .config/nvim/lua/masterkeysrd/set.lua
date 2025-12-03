@@ -72,7 +72,7 @@ vim.o.ttimeoutlen = 10
 vim.o.wildmode = "longest:full,full"
 vim.o.wildignorecase = true
 vim.opt.wildignore:append { '.DS_Store' }
-vim.o.completeopt = "fuzzy,menuone,noselect,noinsert"
+vim.o.completeopt = "fuzzy,menuone,noinsert"
 vim.o.pumheight = 12
 
 -- Diff mode settings.
