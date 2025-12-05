@@ -193,8 +193,24 @@ func InstallPlugins(config Config, plugins []Plugin, lockfile *Lockfile) error {
 func UpdatePlugins(config Config, plugins []Plugin, lockfile *Lockfile) error {
 	log.Println("updating plugins")
 	for _, plugin := range plugins {
-		log.Println("updating", plugin.GetName())
-		commit, err := PullRepo(config.PluginsHome, plugin)
+		// Check if plugin is already installed in the destination
+		if _, err := os.Stat(path.Join(config.PluginsHome, plugin.DirectoryName())); err == nil {
+			log.Println("updating", plugin.GetName())
+			commit, err := PullRepo(config.PluginsHome, plugin)
+			if err != nil {
+				return err
+			}
+			lockfile.Plugins = append(lockfile.Plugins, LokedPlugin{
+				Name:   plugin.Name,
+				URL:    plugin.URL,
+				Commit: commit,
+			})
+			continue
+		}
+
+		// Lest clone the repo
+		log.Println("installing", plugin.GetName())
+		commit, err := CloneRepo(config.PluginsHome, plugin)
 		if err != nil {
 			return err
 		}
