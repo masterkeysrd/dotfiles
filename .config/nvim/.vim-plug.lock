@@ -1,11 +1,6 @@
 {
   "plugins": [
     {
-      "name": "Exafunction/windsurf.vim",
-      "url": "",
-      "commit": "a8d47ec54fe82df920b2545559f767003e8a7f8d"
-    },
-    {
       "name": "MunifTanjim/nui.nvim",
       "url": "",
       "commit": "de740991c12411b663994b2860f1a4fd0937c130"
@@ -13,7 +8,7 @@
     {
       "name": "b0o/SchemaStore.nvim",
       "url": "",
-      "commit": "e9c00ea7813006dfa29f35c174f83f0184d45a93"
+      "commit": "21645280ad06fce01ef109e82d76302dcbe62756"
     },
     {
       "name": "echasnovski/mini.bufremove",
