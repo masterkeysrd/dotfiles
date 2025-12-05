@@ -1,0 +1,56 @@
+{
+  "plugins": [
+    {
+      "name": "nvim-treesitter/nvim-treesitter",
+      "branch": "master"
+    },
+    {
+      "name": "nvim-tree/nvim-web-devicons"
+    },
+    {
+      "name": "folke/noice.nvim"
+    },
+    {
+      "name": "MunifTanjim/nui.nvim"
+    },
+    {
+      "name": "nvim-tree/nvim-tree.lua"
+    },
+    {
+      "name": "lewis6991/gitsigns.nvim"
+    },
+    {
+      "name": "lukas-reineke/indent-blankline.nvim"
+    },
+    {
+      "name": "echasnovski/mini.indentscope"
+    },
+    {
+      "name": "ibhagwan/fzf-lua"
+    },
+    {
+      "name": "echasnovski/mini.surround"
+    },
+    {
+      "name": "echasnovski/mini.pairs"
+    },
+    {
+      "name": "echasnovski/mini.bufremove"
+    },
+    {
+      "name": "Exafunction/windsurf.vim"
+    },
+    {
+      "name": "b0o/SchemaStore.nvim"
+    },
+    {
+      "name": "nvim-mini/mini.clue"
+    },
+    {
+      "name": "stevearc/conform.nvim"
+    },
+    {
+      "name": "windwp/nvim-ts-autotag"
+    }
+  ]
+}

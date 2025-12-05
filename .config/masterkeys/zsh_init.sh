@@ -40,6 +40,19 @@ function lg() {
   fi
 }
 
+function git() {
+  if [ "$PWD" = "$HOME" ] || [ "$PWD" = "$HOME/.config/nvim" ]; then
+    command git --git-dir="$HOME/.dotfiles" --work-tree="$HOME" "$@"
+  else
+    command git "$@"
+  fi
+}
+
+function vim-plug-update() {
+  echo "Updating Vim-Plug..."
+  (cd "$HOME/tools/vim-plug" && go install .)
+  echo "Vim-Plug updated."
+}
 
 ## Set default variables
 export XDG_CONFIG_HOME="$HOME/.config"
