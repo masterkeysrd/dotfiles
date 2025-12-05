@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 	"path"
+	"sort"
 	"strings"
 
 	"github.com/go-git/go-git/v6"
@@ -165,6 +166,11 @@ func Sync(config Config) error {
 		return err
 	}
 
+	// sort the plugins
+	sort.Slice(newLockfile.Plugins, func(i, j int) bool {
+		return newLockfile.Plugins[i].Name < newLockfile.Plugins[j].Name
+	})
+
 	log.Println("saving lockfile to", lockFilePath)
 	if err := saveJSON(lockFilePath, newLockfile); err != nil {
 		return fmt.Errorf("cannot save lockfile: %w", err)
@@ -283,8 +289,9 @@ func PullRepo(home string, plugin Plugin) (string, error) {
 }
 
 func RemoveRepo(home string, plugin Plugin) error {
-	log.Println("removing repository from", plugin.URL)
-	return os.RemoveAll(path.Join(home, plugin.GetName()))
+	destination := path.Join(home, plugin.DirectoryName())
+	log.Println("removing repository from", destination)
+	return os.RemoveAll(destination)
 }
 
 func loadJSON(filePath string, v any) error {

@@ -1,13 +1,5 @@
-local ok, copilot = pcall(require, 'copilot.lua')
-local notify_opts = { title = 'Editor' }
+vim.g.copilot_no_tab_map = false
 
-if not ok then
-    vim.notify('copilot.lua is not installed', vim.log.levels.ERROR, notify_opts)
-    return
-end
-
-copilot.setup({
-    nes = {
-        enabled = true,
-    }
-})
+vim.keymap.set('i', '<C-j>', '<Plug>(copilot-next)', { noremap = false })
+vim.keymap.set('i', '<C-k>', '<Plug>(copilot-previous)', { noremap = false })
+vim.keymap.set('i', '<S-CR>', '<Plug>(copilot-accept-line)', { noremap = false })

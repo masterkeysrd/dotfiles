@@ -1,89 +1,9 @@
 {
   "plugins": [
     {
-      "name": "zbirenbaum/copilot.lua",
-      "url": "",
-      "commit": "881f99b827d65b41f522eecc21b112cf518028ac"
-    },
-    {
-      "name": "copilotlsp-nvim/copilot-lsp",
-      "url": "",
-      "commit": "884034b23c3716d55b417984ad092dc2b011115b"
-    },
-    {
-      "name": "echasnovski/mini.pairs",
-      "url": "",
-      "commit": "472ec50092a3314ec285d2db2baa48602d71fe93"
-    },
-    {
-      "name": "nvim-mini/mini.clue",
-      "url": "",
-      "commit": "c465495a962d8bcca1718666ec33769b6f6969ad"
-    },
-    {
-      "name": "windwp/nvim-ts-autotag",
-      "url": "",
-      "commit": "c4ca798ab95b316a768d51eaaaee48f64a4a46bc"
-    },
-    {
-      "name": "echasnovski/mini.indentscope",
-      "url": "",
-      "commit": "0308f949f31769e509696af5d5f91cebb2159c69"
-    },
-    {
-      "name": "echasnovski/mini.surround",
-      "url": "",
-      "commit": "88c52297ed3e69ecf9f8652837888ecc727a28ee"
-    },
-    {
-      "name": "nvim-tree/nvim-web-devicons",
-      "url": "",
-      "commit": "8dcb311b0c92d460fac00eac706abd43d94d68af"
-    },
-    {
-      "name": "folke/noice.nvim",
-      "url": "",
-      "commit": "7bfd942445fb63089b59f97ca487d605e715f155"
-    },
-    {
-      "name": "echasnovski/mini.bufremove",
-      "url": "",
-      "commit": "10857aa39160c127694151828914df3131ba83b6"
-    },
-    {
-      "name": "stevearc/conform.nvim",
-      "url": "",
-      "commit": "ffe26e8df8115c9665d24231f8a49fadb2d611ce"
-    },
-    {
-      "name": "nvim-treesitter/nvim-treesitter",
-      "url": "",
-      "commit": "42fc28ba918343ebfd5565147a42a26580579482"
-    },
-    {
-      "name": "nvim-tree/nvim-tree.lua",
-      "url": "",
-      "commit": "59088b96a32ea47caf4976e164dbd88b86447fb7"
-    },
-    {
-      "name": "lewis6991/gitsigns.nvim",
-      "url": "",
-      "commit": "5813e4878748805f1518cee7abb50fd7205a3a48"
-    },
-    {
-      "name": "ibhagwan/fzf-lua",
-      "url": "",
-      "commit": "f6d949549cc43fb5d35ef43db56f03131da469a7"
-    },
-    {
       "name": "Exafunction/windsurf.vim",
       "url": "",
       "commit": "a8d47ec54fe82df920b2545559f767003e8a7f8d"
-    },
-    {
-      "name": "b0o/SchemaStore.nvim",
-      "url": "",
-      "commit": "e9c00ea7813006dfa29f35c174f83f0184d45a93"
     },
     {
       "name": "MunifTanjim/nui.nvim",
@@ -91,9 +11,84 @@
       "commit": "de740991c12411b663994b2860f1a4fd0937c130"
     },
     {
+      "name": "b0o/SchemaStore.nvim",
+      "url": "",
+      "commit": "e9c00ea7813006dfa29f35c174f83f0184d45a93"
+    },
+    {
+      "name": "echasnovski/mini.bufremove",
+      "url": "",
+      "commit": "10857aa39160c127694151828914df3131ba83b6"
+    },
+    {
+      "name": "echasnovski/mini.indentscope",
+      "url": "",
+      "commit": "0308f949f31769e509696af5d5f91cebb2159c69"
+    },
+    {
+      "name": "echasnovski/mini.pairs",
+      "url": "",
+      "commit": "472ec50092a3314ec285d2db2baa48602d71fe93"
+    },
+    {
+      "name": "echasnovski/mini.surround",
+      "url": "",
+      "commit": "88c52297ed3e69ecf9f8652837888ecc727a28ee"
+    },
+    {
+      "name": "folke/noice.nvim",
+      "url": "",
+      "commit": "7bfd942445fb63089b59f97ca487d605e715f155"
+    },
+    {
+      "name": "github/copilot.vim",
+      "url": "",
+      "commit": "f89e977c87180519ba3b942200e3d05b17b1e2fc"
+    },
+    {
+      "name": "ibhagwan/fzf-lua",
+      "url": "",
+      "commit": "f6d949549cc43fb5d35ef43db56f03131da469a7"
+    },
+    {
+      "name": "lewis6991/gitsigns.nvim",
+      "url": "",
+      "commit": "5813e4878748805f1518cee7abb50fd7205a3a48"
+    },
+    {
       "name": "lukas-reineke/indent-blankline.nvim",
       "url": "",
       "commit": "005b56001b2cb30bfa61b7986bc50657816ba4ba"
+    },
+    {
+      "name": "nvim-mini/mini.clue",
+      "url": "",
+      "commit": "c465495a962d8bcca1718666ec33769b6f6969ad"
+    },
+    {
+      "name": "nvim-tree/nvim-tree.lua",
+      "url": "",
+      "commit": "59088b96a32ea47caf4976e164dbd88b86447fb7"
+    },
+    {
+      "name": "nvim-tree/nvim-web-devicons",
+      "url": "",
+      "commit": "8dcb311b0c92d460fac00eac706abd43d94d68af"
+    },
+    {
+      "name": "nvim-treesitter/nvim-treesitter",
+      "url": "",
+      "commit": "42fc28ba918343ebfd5565147a42a26580579482"
+    },
+    {
+      "name": "stevearc/conform.nvim",
+      "url": "",
+      "commit": "ffe26e8df8115c9665d24231f8a49fadb2d611ce"
+    },
+    {
+      "name": "windwp/nvim-ts-autotag",
+      "url": "",
+      "commit": "c4ca798ab95b316a768d51eaaaee48f64a4a46bc"
     }
   ]
 }

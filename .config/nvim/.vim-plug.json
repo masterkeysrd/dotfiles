@@ -53,10 +53,7 @@
       "name": "windwp/nvim-ts-autotag"
     },
     {
-      "name": "zbirenbaum/copilot.lua"
-    },
-    {
-      "name": "copilotlsp-nvim/copilot-lsp"
+      "name": "github/copilot.vim"
     }
   ]
 }
