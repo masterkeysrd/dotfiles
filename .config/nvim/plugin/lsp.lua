@@ -144,10 +144,15 @@ local function show_documentation_floating_win(event)
     local max_width = win_width - offset_x - 2        -- subtract a small padding
     max_width = math.max(20, math.min(max_width, 80)) -- restrict the size
 
+    -- Calculate height based on content
+    local max_height = math.max(10, vim.o.lines - 4) -- leave some space at bottom
+    local height = math.min(#contents, max_height)
+
     vim.schedule(function()
         vim.lsp.util.open_floating_preview(contents, kind, {
             title = "Documentation",
             max_width = vim.g.lsp.previewwidth or max_width or 60,
+            height = height,
             offset_x = offset_x,
             close_events = { "CompleteChanged", "CompleteDone", "InsertLeave" },
         })
@@ -228,7 +233,7 @@ local function on_attach(client, bufnr)
         keymap("i", "<C-k>", vim.lsp.buf.signature_help, "Signature help")
     end
 
-    if client:supports_method(methods.textDocument_documentHighlight) then
+    if client:supports_method("textDocument/documentHighlight") then
         create_autocmd(
             { "CursorHold", "CursorHoldI", "InsertLeave" },
             "Add LSP document highligth",
