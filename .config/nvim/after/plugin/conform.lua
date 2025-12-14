@@ -17,6 +17,7 @@ conform.setup({
         javascriptreact = { "prettierd", "prettier", stop_after_first = true, timeout_ms = 500, lsp_format = 'fallback' },
         json = { "prettierd", "prettier", stop_after_first = true, timeout_ms = 500, lsp_format = 'fallback' },
         jsonc = { "prettierd", "prettier", stop_after_first = true, timeout_ms = 500, lsp_format = 'fallback' },
+        sql = { "sql_formatter", timeout_ms = 500, lsp_format = 'fallback' },
         typescript = { "prettierd", "prettier", stop_after_first = true, timeout_ms = 500, lsp_format = 'fallback' },
         typescriptreact = { "prettierd", "prettier", stop_after_first = true, timeout_ms = 500, lsp_format = 'fallback' },
     },
