@@ -1,8 +1,7 @@
 {
   "plugins": [
     {
-      "name": "nvim-treesitter/nvim-treesitter",
-      "branch": "master"
+      "name": "nvim-treesitter/nvim-treesitter"
     },
     {
       "name": "nvim-tree/nvim-web-devicons"
@@ -20,7 +19,8 @@
       "name": "lewis6991/gitsigns.nvim"
     },
     {
-      "name": "lukas-reineke/indent-blankline.nvim"
+      "name": "lukas-reineke/indent-blankline.nvim",
+      "branch": "master"
     },
     {
       "name": "echasnovski/mini.indentscope"
@@ -48,9 +48,6 @@
     },
     {
       "name": "windwp/nvim-ts-autotag"
-    },
-    {
-      "name": "github/copilot.vim"
     }
   ]
 }

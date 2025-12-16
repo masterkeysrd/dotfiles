@@ -66,6 +66,10 @@ func (p Plugin) GetURL() string {
 	return p.URL
 }
 
+func (p Plugin) Reference() string {
+	return p.Branch
+}
+
 type Lockfile struct {
 	Plugins []LokedPlugin `json:"plugins"`
 }
@@ -240,12 +244,16 @@ func Uninstall(config Config, plugins []Plugin) error {
 
 func CloneRepo(home string, plugin Plugin) (string, error) {
 	destination := path.Join(home, plugin.DirectoryName())
+	if _, err := os.Stat(destination); err == nil {
+		return PullRepo(home, plugin)
+	}
+
 	log.Println("cloning repository from", plugin.GetURL(), "to", destination)
 	repo, err := git.PlainClone(destination, &git.CloneOptions{
 		URL:               plugin.GetURL(),
 		RecurseSubmodules: git.DefaultSubmoduleRecursionDepth,
 		SingleBranch:      true,
-		ReferenceName:     plumbing.ReferenceName(plugin.Branch),
+		ReferenceName:     plumbing.ReferenceName(plugin.Reference()),
 		Progress:          os.Stdout,
 	})
 	if err != nil {
@@ -262,7 +270,7 @@ func CloneRepo(home string, plugin Plugin) (string, error) {
 
 func PullRepo(home string, plugin Plugin) (string, error) {
 	destination := path.Join(home, plugin.DirectoryName())
-	log.Println("pulling repository from", plugin.URL, "to", destination)
+	log.Println("pulling repository from", plugin.GetURL(), "to", destination)
 	repo, err := git.PlainOpen(destination)
 	if err != nil {
 		return "", fmt.Errorf("cannot open repository: %s", err)
@@ -274,8 +282,9 @@ func PullRepo(home string, plugin Plugin) (string, error) {
 	}
 
 	if err := w.Pull(&git.PullOptions{
-		RemoteName: "origin",
-		Progress:   os.Stdout,
+		RemoteName:    "origin",
+		ReferenceName: plumbing.ReferenceName(plugin.Reference()),
+		Progress:      os.Stdout,
 	}); err != nil && err != git.NoErrAlreadyUpToDate {
 		return "", fmt.Errorf("cannot pull repository: %s", err)
 	}
