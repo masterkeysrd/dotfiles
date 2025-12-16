@@ -12,7 +12,7 @@ conform.setup({
         lsp_format = "fallback",
     },
     formatters_by_ft = {
-        go = { name = 'gopls', timeout_ms = 500, lsp_format = 'prefer' },
+        go = { 'gopls', "goimports", timeout_ms = 500, lsp_format = 'fallback' },
         javascript = { "prettierd", "prettier", stop_after_first = true, timeout_ms = 500, lsp_format = 'fallback' },
         javascriptreact = { "prettierd", "prettier", stop_after_first = true, timeout_ms = 500, lsp_format = 'fallback' },
         json = { "prettierd", "prettier", stop_after_first = true, timeout_ms = 500, lsp_format = 'fallback' },
