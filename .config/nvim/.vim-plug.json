@@ -1,7 +1,8 @@
 {
   "plugins": [
     {
-      "name": "nvim-treesitter/nvim-treesitter"
+      "name": "nvim-treesitter/nvim-treesitter",
+      "branch": "master"
     },
     {
       "name": "nvim-tree/nvim-web-devicons"

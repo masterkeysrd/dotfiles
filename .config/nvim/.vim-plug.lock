@@ -68,7 +68,7 @@
     {
       "name": "nvim-treesitter/nvim-treesitter",
       "url": "",
-      "commit": "d3218d988f72ed34414959c9ccd802d393432d6e"
+      "commit": "42fc28ba918343ebfd5565147a42a26580579482"
     },
     {
       "name": "stevearc/conform.nvim",
