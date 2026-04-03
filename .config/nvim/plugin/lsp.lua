@@ -271,7 +271,7 @@ local function on_attach(client, bufnr)
 
     if client:supports_method(methods.textDocument_codeLens) then
         vim.defer_fn(function()
-            vim.lsp.codelens.refresh({ bufnr = bufnr })
+            vim.lsp.codelens.enable(true, { bufnr = bufnr })
         end, 500)
 
         vim.api.nvim_create_autocmd("LspProgress", {
@@ -279,17 +279,10 @@ local function on_attach(client, bufnr)
             desc = "Refresh LSP codelens",
             callback = function(ev)
                 if ev.buf == bufnr then
-                    vim.lsp.codelens.refresh({ bufnr = bufnr })
+                    vim.lsp.codelens.enable(true, { bufnr = bufnr })
                 end
             end,
         })
-
-        create_autocmd({ "BufEnter", "TextChanged", "InsertLeave" }, "Refresh LSP codelens",
-            function()
-                vim.lsp.codelens.refresh({ bufnr = bufnr })
-            end
-        )
-
 
         keymap("n", "gl", vim.lsp.codelens.run, "Run codelens")
     end
@@ -421,7 +414,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end,
 })
 
-vim.api.nvim_create_autocmd("LSPDetach", {
+vim.api.nvim_create_autocmd('LspDetach', {
     group = lspgroup,
     callback = function(arg)
         local buf = arg.buf
