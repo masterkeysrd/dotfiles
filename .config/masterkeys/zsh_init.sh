@@ -48,11 +48,5 @@ function git() {
   fi
 }
 
-function vim-plug-update() {
-  echo "Updating Vim-Plug..."
-  (cd "$HOME/tools/vim-plug" && go install .)
-  echo "Vim-Plug updated."
-}
-
 ## Set default variables
 export XDG_CONFIG_HOME="$HOME/.config"
