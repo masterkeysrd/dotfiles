@@ -17,7 +17,8 @@ vim.pack.add({
     "https://github.com/windwp/nvim-ts-autotag",
 })
 
-if vim.fn.getenv("COPILOT_ENABLED"):upper() == "TRUE" then
+local copilot_enabled = tostring(vim.fn.getenv("COPILOT_ENABLED"))
+if copilot_enabled and copilot_enabled:upper() == "TRUE" then
     vim.pack.add({
         "https://github.com/github/copilot.vim.git"
     })
