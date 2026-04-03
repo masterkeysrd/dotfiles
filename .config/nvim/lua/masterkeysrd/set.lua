@@ -106,3 +106,6 @@ vim.o.smoothscroll = true
 vim.o.splitright = true
 vim.o.tagcase = "match"
 vim.o.title = true
+
+-- Enable project local config
+vim.o.exrc = true

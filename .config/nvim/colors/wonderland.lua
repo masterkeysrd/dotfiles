@@ -305,6 +305,7 @@ set(0, "@punctuation.bracket", { fg = scale.orange[3] })           -- Generic br
 -- LSP Features
 set(0, "LspCodeLens", { fg = scale.pink[3], underline = true })
 set(0, "LSPInlayHint", { fg = scale.gray[4], bg = scale.gray[8] })
+set(0, "CompHint", { link = "Comment" })
 
 -- LSP semantic tokens
 set(0, "@lsp.type.namespace", { link = "@namespace" })

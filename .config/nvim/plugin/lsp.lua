@@ -199,11 +199,7 @@ local function on_attach(client, bufnr)
     end
 
     if client:supports_method(methods.textDocument_documentColor, bufnr) then
-        -- Nvim still do not release this feature but will be great to have when they
-        -- do it.
-        if vim.lsp.document_color then
-            vim.lsp.document_color.enable()
-        end
+        keymap("n", "grc", vim.lsp.document_color.color_presentation, "LSP Color action")
     end
 
     if client:supports_method(methods.textDocument_completion) then

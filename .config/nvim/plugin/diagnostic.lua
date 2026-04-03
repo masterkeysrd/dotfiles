@@ -1,8 +1,8 @@
 local icons = require("masterkeysrd.icons")
 
 vim.diagnostic.config({
-    signs = {
-        text = {
+    status = {
+        format = {
             [vim.diagnostic.severity.ERROR] = " ",
             [vim.diagnostic.severity.WARN] = " ",
             [vim.diagnostic.severity.HINT] = " ",

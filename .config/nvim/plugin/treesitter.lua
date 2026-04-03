@@ -26,10 +26,6 @@ vim.api.nvim_create_autocmd("FileType", {
             return
         end
 
-        if not vim.treesitter.highlighter.active[buf] then
-            vim.treesitter.highlighter.new(parser)
-        end
-
         if vim.treesitter.query.get(ft, "folds") then
             local win = vim.api.nvim_get_current_win()
             vim.wo[win].foldmethod = "expr"
