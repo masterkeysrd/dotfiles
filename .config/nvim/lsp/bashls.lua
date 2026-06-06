@@ -1,4 +1,5 @@
 -- Install with: npm i -g bash-language-server
+--           or: brew install bash-language-server
 -- Also uses shellcheck for diagnostics and shfmt for formatting.
 
 ---@type vim.lsp.Config

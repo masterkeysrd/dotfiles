@@ -1,3 +1,8 @@
-local devicons = require("nvim-web-devicons")
+local add = require('vim-pack').add
 
-devicons.setup({})
+add {
+    {
+        src = 'nvim-tree/nvim-web-devicons',
+        opts = {},
+    }
+}

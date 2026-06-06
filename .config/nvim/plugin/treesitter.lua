@@ -1,3 +1,5 @@
+local pack = require('vim-pack')
+
 local parsers = {
     'bash',
     'c',
@@ -29,10 +31,15 @@ local parsers = {
     'yaml',
 }
 
--- Highlight, edit, and navigate code.
-vim.pack.add {
+pack.on_plugin_update('nvim-treesitter', function()
+    require('nvim-treesitter').install(parsers):wait(300000)
+    require('nvim-treesitter').update():wait(300000)
+end)
+
+pack.add {
     {
-        src = 'https://github.com/nvim-treesitter/nvim-treesitter',
+        src = 'nvim-treesitter/nvim-treesitter',
+        module_name = 'nvim-treesitter.configs',
         opts = {
             modules = {},
             ensure_installed = { 'lua', 'go' },
@@ -53,9 +60,6 @@ vim.pack.add {
             },
         },
         on_setup = function()
-            -- Main-branch nvim-treesitter ships queries under `runtime/queries/`,
-            -- which isn't on rtp by default. Prepend it so highlights/folds/indents
-            -- are visible to `vim.treesitter.start`.
             local init = vim.api.nvim_get_runtime_file('lua/nvim-treesitter/init.lua', false)[1]
             if init then
                 vim.opt.runtimepath:prepend(vim.fn.fnamemodify(init, ':h:h:h') .. '/runtime')
@@ -65,19 +69,15 @@ vim.pack.add {
         end,
     },
     {
-        src = 'https://github.com/nvim-treesitter/nvim-treesitter-context',
+        src = 'nvim-treesitter/nvim-treesitter-context',
         module_name = 'treesitter-context',
         opts = {
-            -- Avoid the sticky context from growing a lot.
             max_lines = 3,
-            -- Match the context lines to the source code.
             multiline_threshold = 1,
-            -- Disable it when the window is too small.
             min_window_height = 20,
         },
         on_setup = function()
             vim.keymap.set('n', '[c', function()
-                -- Jump to previous change when in diffview.
                 if vim.wo.diff then
                     return '[c'
                 else

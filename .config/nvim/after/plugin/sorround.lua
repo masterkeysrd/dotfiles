@@ -1,9 +1,9 @@
-local ok, sorround = pcall(require, "mini.surround")
-local notify_opts = { title = "Editor" }
+local add = require('vim-pack').add
 
-if not ok then
-    vim.notify("mini.surround not found", vim.log.levels.ERROR, notify_opts)
-    return
-end
-
-sorround.setup({})
+add {
+    {
+        src = 'echasnovski/mini.surround',
+        module_name = 'mini.surround',
+        opts = {},
+    }
+}
