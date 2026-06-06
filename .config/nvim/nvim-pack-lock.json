@@ -20,6 +20,10 @@
       "rev": "d28a3f70721c79e3c5f6693057ae929f3d9c0a03",
       "src": "https://github.com/lukas-reineke/indent-blankline.nvim"
     },
+    "markdown-preview.nvim": {
+      "rev": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee",
+      "src": "https://github.com/iamcco/markdown-preview.nvim"
+    },
     "mini.bufremove": {
       "rev": "4cfbb201b2760da79ca6e1a00e9f67cbc99cbb8f",
       "src": "https://github.com/echasnovski/mini.bufremove"
