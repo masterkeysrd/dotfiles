@@ -1,3 +1,5 @@
+require('vim-pack').add { { src = 'nvim-tree/nvim-web-devicons', opts = {} } }
+
 local modified_icon = require('masterkeysrd.icons').misc.modfied
 
 vim.o.showtabline = 2
