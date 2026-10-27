@@ -5,8 +5,6 @@ os:
   editPreset: 'nvim'
 gui:
   nerdFontsVersion: "3"
-  authorColors:
-    '*': "#ff7b72"
   theme:
     activeBorderColor:
       - "#58a6ff"
@@ -21,4 +19,5 @@ gui:
       - "#c04a45"
     defaultFgColor:
       - "#f6f8fa"
-
+    authorColors:
+      '*': "#ff7b72"
